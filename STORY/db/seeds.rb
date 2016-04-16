@@ -9,23 +9,24 @@
 
 # Make users
 %w(Leeren@b, Justin@b, Iris@b, Ian@b).each do |email|
-  User.create name: name, email: email, password: '123456', password_confirmation: '123456'
+  User.create email: email, password: '123456', password_confirmation: '123456'
+end
 
 # Make stories
-Story.create votes: 50, user_id: 1, beginning: 'Driving down the street'
-Story.create votes: 30, user_id: 2, beginning: 'Eating lunch'
-Story.create votes: 21, user_id: 4, beginning: 'Skipping classes on Friday'
+Story.create vote: 50, user_id: 1, beginning: 'Driving down the street'
+Story.create vote: 30, user_id: 2, beginning: 'Eating lunch'
+Story.create vote: 21, user_id: 4, beginning: 'Skipping classes on Friday'
 
 
 # Make Posts
-Post.create content: '1st post of 1st story', user_id: 1, votes: 10, success: true, story_id: 1
-Post.create content: '2st post of 1st story', user_id: 2, votes: 10, success: true, story_id: 1
-Post.create content: '1st potential post of 1st story', user_id: 3, votes: 6, success: false, story_id: 1
-Post.create content: '2nd potential post of 1st story', user_id: 4, votes: 4, success: false, story_id: 1
-Post.create content: '3rd potential post of 1st story', user_id: 1, votes: 5, success: false, story_id: 1
+Post.create content: '1st post of 1st story', user_id: 1, vote: 10, story_id: 1, success: true
+Post.create content: '2st post of 1st story', user_id: 2, vote: 10, story_id: 1, success: true
+Post.create content: '1st potential post of 1st story', user_id: 3, vote: 6, story_id: 1, success: false
+Post.create content: '2nd potential post of 1st story', user_id: 4, vote: 4, story_id: 1, success: false
+Post.create content: '3rd potential post of 1st story', user_id: 1, vote: 5, story_id: 1, success: false
 
-Post.create content: '1st post of 2nd story', user_id: 3, votes: 10, success: true, story_id: 1
-Post.create content: '2st post of 2nd story', user_id: 4, votes: 10, success: true, story_id: 1
-Post.create content: '1st potential post of 2nd story', user_id: 3, votes: 9, success: false, story_id: 1
-Post.create content: '2nd potential post of 2nd story', user_id: 4, votes: 4, success: false, story_id: 1
-Post.create content: '3rd potential post of 2nd story', user_id: 1, votes: 5, success: false, story_id: 1
+Post.create content: '1st post of 2nd story', user_id: 3, vote: 10, story_id: 1, success: true
+Post.create content: '2st post of 2nd story', user_id: 4, vote: 10, story_id: 1, success: true
+Post.create content: '1st potential post of 2nd story', user_id: 3, vote: 9, story_id: 1, success: false
+Post.create content: '2nd potential post of 2nd story', user_id: 4, vote: 4, story_id: 1, success: false
+Post.create content: '3rd potential post of 2nd story', user_id: 1, vote: 5, story_id: 1, success: false
