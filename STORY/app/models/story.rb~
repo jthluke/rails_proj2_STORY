@@ -1,7 +1,6 @@
-class Post < ActiveRecord::Base
+class Story < ActiveRecord::Base
     acts_as_votable
-    validates :content, presence: true
-    belongs_to :story
+    validates :beginning, presence: true
     belongs_to :user
 
     def score
