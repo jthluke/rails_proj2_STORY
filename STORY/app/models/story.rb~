@@ -1,6 +1,6 @@
 class Story < ActiveRecord::Base
     acts_as_votable
-
+<<<<<<< HEAD
     validates :beginning, presence: true
     belongs_to :user
     has_many :posts
@@ -9,4 +9,10 @@ class Story < ActiveRecord::Base
       self.get_upvotes.size - self.get_downvotes.size
     end
 
+=======
+    
+    def score
+      self.get_upvotes.size - self.get_downvotes.size
+    end
+>>>>>>> d5e33b600373062f36081e2093b17f1e6b59da98
 end
