@@ -8,9 +8,10 @@
 
 
 # Make users
-%w(leeren@berkeley.edu, justin@berkeley.edu, iris@berkeley.edu, ian@berkeley.edu).each do |email|
-  User.create email: email, password: '12345678', password_confirmation: '12345678'
-end
+User.create email: 'leeren@berkeley.edu', password: '12345678', password_confirmation: '12345678'
+User.create email: 'justin@berkeley.edu', password: '12345678', password_confirmation: '12345678'
+User.create email: 'iris@berkeley.edu', password: '12345678', password_confirmation: '12345678'
+User.create email: 'ian@berkeley.edu', password: '12345678', password_confirmation: '12345678'
 
 # Make stories
 Story.create vote: 50, user_id: 1, beginning: 'Driving down the street'
