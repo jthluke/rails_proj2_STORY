@@ -1,14 +1,14 @@
 <h3>Story</h3>
 
 <p>
-<% if @user.id == current_user.id %>
+<% if @user && @user.id == current_user.id %>
 	<%= button_to "Create new Post", new_path, :class => "button medium", :method => :get %>
 <% end %>
 </p>
 
 <p>Beginning: <%= @story.beginning if @story.beginning %></p>
 
-<p><% @story.post.each do |p| %>
+<p><% @story.posts.each do |p| %>
 	<table>
 		<tr>
 		<td><b>Content</b>:  <%= p.content %> </td>  

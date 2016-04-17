@@ -6,8 +6,8 @@ class StoriesController < ApplicationController
 	end
 
 	def new
-    @story = Story.new
-  end
+        @story = Story.new
+    end
 
 	def create
 		@story = Story.create story_params
