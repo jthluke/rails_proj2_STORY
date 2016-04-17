@@ -2,3 +2,9 @@
 <% @stories.each do |s| %>
     <h2>Story <%= s.id %> : <%= link_to s.beginning, s%></h2>
 <% end %>
+
+<p>
+<% if @user.id == current_user.id %>
+	<%= button_to "Create new Story", new_path, :class => "button medium", :method => :get %>
+<% end %>
+</p>

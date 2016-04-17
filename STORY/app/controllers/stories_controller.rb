@@ -1,13 +1,12 @@
 class StoriesController < ApplicationController
 
-
 	def index
 		@stories = Story.all
 	end
 
 	def new
-    @story = Story.new
-  end
+	    @story = Story.new
+  	end
 
 	def create
 		@story = Story.create story_params
@@ -24,17 +23,17 @@ class StoriesController < ApplicationController
 		@story = Story.find(params[:id])
 	end
 
-  def upvote
-    @story = Story.find(params[:id])
-    @story.upvote_by current_user
-    redirect_to stories_path
-  end
+	  def upvote
+	    @story = Story.find(params[:id])
+	    @story.upvote_by current_user
+	    redirect_to stories_path
+	  end
 
-  def downvote
-    @story = Story.find(params[:id])
-    @story.downvote_by current_user
-    redirect_to stories_path
-  end
+	  def downvote
+	    @story = Story.find(params[:id])
+	    @story.downvote_by current_user
+	    redirect_to stories_path
+	  end
 
 	private
 
