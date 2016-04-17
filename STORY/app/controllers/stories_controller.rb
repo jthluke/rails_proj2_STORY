@@ -1,4 +1,4 @@
-class StoryController < ApplicationController
+class StoriesController < ApplicationController
 
 	def index
 		@stories = Story.all
