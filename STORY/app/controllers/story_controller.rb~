@@ -1,4 +1,4 @@
-class StoriesController < ApplicationController
+class StoryController < ApplicationController
 
     def index
       @stories = Story.all
@@ -21,14 +21,13 @@ class StoriesController < ApplicationController
     end
 
     def create
-      @story = Story.create story_params
+      @story = Story.create pokemon_params
       @story.user_id = current_user.id
-      if @story.save
-      	redirect_to story_url(id:@story.id)
+      if @pokemon.save
+      	redirect_to trainer_url(id:current_trainer.id)
       else
-      	flash[:error] = @story.errors.full_messages.to_
-      	redirect_to root
+      	flash[:error] = @pokemon.errors.full_messages.to_
+      	redirect_to new_get_path
       end
-    end
 
 end
