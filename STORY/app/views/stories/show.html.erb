@@ -1,10 +1,11 @@
 <h3>Story</h3>
 
 <p>
-
-<%= button_to "Create new Post", new_post_path, :class => "button medium", :method => :get %>
-
-</p>
+<% if (current_user) %>
+    <%= button_to "Create new Post", new_post_path, :class => "button medium", :method => :get %>
+<% else %>
+    <%= button_to "Create new Post", new_user_session_path, :class => "button medium", :method => :get %>
+<% end %></p>
 
 <p>Beginning: <%= @story.beginning if @story.beginning %></p>
 

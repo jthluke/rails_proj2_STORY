@@ -5,5 +5,9 @@
 <% end %>
 
 <p>
+<% if (current_user) %>
 	<%= button_to "Create new Story", new_story_path, :class => "button medium", :method => :get %>
+<% else %>
+	<%= button_to "Create new Story", new_user_session_path, :class => "button medium", :method => :get %>
+<% end %>
 </p>
