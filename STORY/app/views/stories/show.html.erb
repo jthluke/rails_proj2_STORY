@@ -11,10 +11,13 @@
     <%= button_to "Create new Post", new_user_session_path, :class => "button medium", :method => :get %>
 <% end %></p>
 
-<p>The Story So Far:  <%= @story.beginning if @story.beginning %>
+<p>The Story So Far:
+	<u><%= @story.beginning + ' ' if @story.beginning %></u>
+	<font size = "3"><%= '('+@story.user.email+')' if @story.beginning %></font>
 	<% @story.posts.each do |p| %>
 		<% if p.success == true %>
-			<%= p.content + ' '%>
+			<u><%= p.content + ' '%></u>
+			<font size = "3"><%= '('+p.user.email+')' %></font>
 		<% end %>
 	<% end %>
 </p>
@@ -27,6 +30,14 @@
 		<tr>
 		<td><b>Content</b>:  <%= p.content %> </td>
 		<td><b>Votes</b>:  <%= p.score %> </td>
+		<td><b>User</b>:  <%= p.user.email %> </td>
+		<% if (current_user) %>
+    	    <%= link_to "Like", like_post_path(p), method: :put %>
+            <%= link_to "Dislike", dislike_post_path(p), method: :put%>
+        <% else %>
+            <%= link_to "Like", new_user_session_path, method: :get %>
+            <%= link_to "Dislike", new_user_session_path, method: :get %>
+        <% end %>
 	<table>
 	<% end %>
 <% end %></p>
@@ -37,6 +48,7 @@
 		<tr>
 		<td><b>Content</b>:  <%= p.content %> </td>
 		<td><b>Likes</b>:  <%= p.score %> </td>
+		<td><b>User</b>:  <%= p.user.email %> </td>
 		<% if (current_user) %>
     	    <%= link_to "Like", like_post_path(p), method: :put %>
             <%= link_to "Dislike", dislike_post_path(p), method: :put%>
