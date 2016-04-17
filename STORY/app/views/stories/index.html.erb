@@ -1,4 +1,12 @@
 <h1>FUN STORIES</h1>
+<p>
+<% if (current_user) %>
+	<%= button_to "Create new Story", new_story_path, :class => "button medium", :method => :get %>
+<% else %>
+	<%= button_to "Create new Story", new_user_session_path, :class => "button medium", :method => :get %>
+<% end %>
+</p>
+
 <% @stories.each do |s| %>
     <h2>Story <%= s.id %> : <%= link_to s.beginning, s%></h2>
     <h3>Likes: <%= s.score %></h3>
@@ -10,11 +18,3 @@
         <%= link_to "Dislike", new_user_session_path, method: :get %>
     <% end %>
 <% end %>
-
-<p>
-<% if (current_user) %>
-	<%= button_to "Create new Story", new_story_path, :class => "button medium", :method => :get %>
-<% else %>
-	<%= button_to "Create new Story", new_user_session_path, :class => "button medium", :method => :get %>
-<% end %>
-</p>
