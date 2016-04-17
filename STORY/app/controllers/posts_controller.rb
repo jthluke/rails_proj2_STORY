@@ -18,25 +18,22 @@ class PostsController < ApplicationController
 		end
 	end
 
-	private
-	def post_params
-		params.require(:post).permit(:content, :story_id)
-	end
-
-
-
 
   def upvote
     @post = Post.find(params[:id])
     @post.upvote_by current_user
-		if @post.votes == 10
+		if @post.score == 1
 			@post.success = true
+			@post.save
 			story = Story.find(@post.story_id)
-			old = story.posts
-			story.posts = []
-			old.each do |p|
+			# old = story.posts
+			# story.posts = []
+			story.posts.each do |p|
 				if p.success == false
-					story.posts.push(p)
+					story.posts.delete(p)
+				end
+			end
+		end
 		redirect_to story_url(id:@post.story.id)
   end
 
@@ -46,10 +43,9 @@ class PostsController < ApplicationController
     redirect_to story_url(id:@post.story.id)
   end
 
-
 	private
 	def post_params
-		params.require(:post).permit(:content)
+		params.require(:post).permit(:content, :story_id)
 	end
 
 
