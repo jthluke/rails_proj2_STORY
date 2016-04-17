@@ -1,4 +1,5 @@
 <h1>FUN STORIES</h1>
 <% @stories.each do |s| %>
     <h2>Story <%= s.id %> : <%= link_to s.beginning, s%></h2>
+    <h3>Upvotes: <%= s.score %></h3>
 <% end %>
