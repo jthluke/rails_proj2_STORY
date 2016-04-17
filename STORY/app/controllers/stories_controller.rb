@@ -15,7 +15,7 @@ class StoriesController < ApplicationController
 			redirect_to story_url(id:@story.id)
 		else
 			flash[:error] = @story.errors.full_messages.to_sentence
-			redirect_to root
+			redirect_to stories_path
 		end
 	end
 
