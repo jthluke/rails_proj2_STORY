@@ -1,18 +1,39 @@
 <h3>Story</h3>
 
 <p>
-<!-- <%= link_to "Create new Post", new_post_path(story_id: @story.id) %> -->
-<%= button_to "Create new Post", new_post_path(), :class => "button medium", :method => :get, params:{story_id: @story.id} %>
 
 
-</p>
+
+<% if (current_user) %>
+	<!-- <%= link_to "Create new Post", new_post_path(story_id: @story.id) %> -->
+	<%= button_to "Create new Post", new_post_path(), :class => "button medium", :method => :get, params:{story_id: @story.id} %>
+<% else %>
+    <%= button_to "Create new Post", new_user_session_path, :class => "button medium", :method => :get %>
+<% end %></p>
 
 <p>Beginning: <%= @story.beginning if @story.beginning %></p>
+
+
+<p>The Story So Far:  <%= @story.beginning if @story.beginning %>
+	<% @story.posts.each do |p| %>
+		<% if p.success == true %>
+			<%= p.content + ' '%>
+		<% end %>
+	<% end %>
+</p>
 
 <p><% @story.posts.each do |p| %>
 	<table>
 		<tr>
 		<td><b>Content</b>:  <%= p.content %> </td>
-		<td><b>Votes</b>:  <%= p.score %> </td>
+		<td><b>Likes</b>:  <%= p.score %> </td>
+		<% if (current_user) %>
+    	    <%= link_to "Like", like_post_path(p), method: :put %>
+            <%= link_to "Dislike", dislike_post_path(p), method: :put%>
+        <% else %>
+            <%= link_to "Like", new_user_session_path, method: :get %>
+            <%= link_to "Dislike", new_user_session_path, method: :get %>
+        <% end %>
+
 	<table>
 <% end %></p>
