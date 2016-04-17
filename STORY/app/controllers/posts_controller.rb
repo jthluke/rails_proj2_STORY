@@ -20,8 +20,8 @@ class PostsController < ApplicationController
 
   def upvote
     @post = Post.find(params[:id])
-    @post.upvote_by current_user
-		if @post.score == 1
+    @post.liked_by current_user
+		if @post.score == 2
 			@post.success = true
 			@post.save
 			story = Story.find(@post.story_id)
@@ -39,9 +39,22 @@ class PostsController < ApplicationController
 
     def downvote
       @post = Post.find(params[:id])
-      @post.downvote_by current_user
+      @post.disliked_by current_user
       redirect_to story_url(id:@post.story_id)
     end
+
+	  def unupvote
+          @post = Post.find(params[:id])
+	      @post.unliked_by current_user
+          redirect_to story_url(id:@post.story_id)
+	  end
+	    
+	  def undownvote
+          @post = Post.find(params[:id])
+	    @post.undisliked_by current_user
+          redirect_to story_url(id:@post.story_id)
+	  end
+
 
 	private
 	def post_params
