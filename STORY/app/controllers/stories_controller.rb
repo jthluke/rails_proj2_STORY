@@ -1,5 +1,6 @@
 class StoriesController < ApplicationController
 
+
 	def index
 		@stories = Story.all
 	end
@@ -8,12 +9,16 @@ class StoriesController < ApplicationController
     @story = Story.new
   end
 
-  def create
-    @story = Story.new story_params
-    @story.user = current_user
-    @story.save
-    redirect_to story_url(id:@story.id)
-  end
+	def create
+		@story = Story.create story_params
+		@story.user_id = current_user.id
+		if @story.save
+			redirect_to story_url(id:@story.id)
+		else
+			flash[:error] = @story.errors.full_messages.to_
+			redirect_to root
+		end
+	end
 
 	def show
 		@story = Story.find(params[:id])
@@ -36,5 +41,6 @@ class StoriesController < ApplicationController
 	    def story_params
 	      params.require(:story).permit(:content)
 	    end
+
 
 end
