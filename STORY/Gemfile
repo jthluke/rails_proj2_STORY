@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+# CSS
+gem 'foundation-rails', '5.4.5'
 # Use gem acts_as_votable
 gem 'acts_as_votable'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
