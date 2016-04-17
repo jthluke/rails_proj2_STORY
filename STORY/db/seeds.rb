@@ -26,8 +26,8 @@ Post.create content: '1st potential post of 1st story', user_id: 3, vote: 6, sto
 Post.create content: '2nd potential post of 1st story', user_id: 4, vote: 4, story_id: 1, success: false
 Post.create content: '3rd potential post of 1st story', user_id: 1, vote: 5, story_id: 1, success: false
 
-Post.create content: '1st post of 2nd story', user_id: 3, vote: 10, story_id: 1, success: true
-Post.create content: '2st post of 2nd story', user_id: 4, vote: 10, story_id: 1, success: true
-Post.create content: '1st potential post of 2nd story', user_id: 3, vote: 9, story_id: 1, success: false
-Post.create content: '2nd potential post of 2nd story', user_id: 4, vote: 4, story_id: 1, success: false
-Post.create content: '3rd potential post of 2nd story', user_id: 1, vote: 5, story_id: 1, success: false
+Post.create content: '1st post of 2nd story', user_id: 3, vote: 10, story_id: 2, success: true
+Post.create content: '2st post of 2nd story', user_id: 4, vote: 10, story_id: 2, success: true
+Post.create content: '1st potential post of 2nd story', user_id: 3, vote: 9, story_id: 2, success: false
+Post.create content: '2nd potential post of 2nd story', user_id: 4, vote: 4, story_id: 2, success: false
+Post.create content: '3rd potential post of 2nd story', user_id: 1, vote: 5, story_id: 2, success: false
