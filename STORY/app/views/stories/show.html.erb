@@ -29,7 +29,7 @@
 	<table>
 		<tr>
 		<td><b>Content</b>:  <%= p.content %> </td>
-		<td><b>Votes</b>:  <%= p.score %> </td>
+		<td><b>Likes</b>:  <%= p.score %> </td>
 		<td><b>User</b>:  <%= p.user.email %> </td>
 		<% if (current_user) %>
             <% if (current_user.voted_up_on? p) %>
