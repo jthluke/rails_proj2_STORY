@@ -13,6 +13,14 @@
 	<table>
 		<tr>
 		<td><b>Content</b>:  <%= p.content %> </td>
-		<td><b>Votes</b>:  <%= p.score %> </td>
+		<td><b>Likes</b>:  <%= p.score %> </td>
+		<% if (current_user) %>
+    	    <%= link_to "Like", like_post_path(p), method: :put %>
+            <%= link_to "Dislike", dislike_post_path(p), method: :put%>
+        <% else %>
+            <%= link_to "Like", new_user_session_path, method: :get %>
+            <%= link_to "Dislike", new_user_session_path, method: :get %>
+        <% end %>
+
 	<table>
 <% end %></p>

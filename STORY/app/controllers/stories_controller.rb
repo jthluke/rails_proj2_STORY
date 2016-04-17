@@ -34,6 +34,18 @@ class StoriesController < ApplicationController
 	    @story.downvote_by current_user
 	    redirect_to stories_path
 	  end
+	  
+	  def unupvote
+	    @story = Story.find(params[:id])
+	    @story.unupvote_by current_user
+	    redirect_to stories_path
+	  end
+	    
+	  def undownvote
+	    @story = Story.find(params[:id])
+	    @story.undownvote_by current_user
+	    redirect_to stories_path
+	  end
 
 	private
 

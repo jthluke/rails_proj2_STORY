@@ -16,21 +16,23 @@ class PostsController < ApplicationController
 		end
 	end
 
-	private
-	def post_params
-		params.require(:post).permit(:content)
-	end
 
     def upvote
       @post = Post.find(params[:id])
       @post.upvote_by current_user
-      redirect_to stories_path
+      redirect_to story_path
     end
 
     def downvote
       @post = Post.find(params[:id])
       @post.downvote_by current_user
-      redirect_to stories_path
+      redirect_to story_path
     end
+
+	private
+	def post_params
+		params.require(:post).permit(:content)
+	end
+
 
 end
