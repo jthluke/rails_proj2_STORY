@@ -14,21 +14,21 @@ User.create email: 'iris@berkeley.edu', password: '12345678', password_confirmat
 User.create email: 'ian@berkeley.edu', password: '12345678', password_confirmation: '12345678'
 
 # Make stories
-Story.create vote: 50, user_id: 1, beginning: 'Driving down the street'
+Story.create vote: 19, user_id: 1, beginning: 'Driving down the street'
 Story.create vote: 30, user_id: 2, beginning: 'Eating lunch'
 Story.create vote: 21, user_id: 4, beginning: 'Skipping classes on Friday'
 
 
 # Make Posts
 Post.create content: '1st post of 1st story', user_id: 1, vote: 10, story_id: 1, success: true
-Post.create content: '2st post of 1st story', user_id: 2, vote: 10, story_id: 1, success: true
-Post.create content: '1st potential post of 1st story', user_id: 3, vote: 6, story_id: 1, success: false
+Post.create content: '2nd post of 1st story', user_id: 2, vote: 10, story_id: 1, success: true
+Post.create content: '1st potential post of 1st story', user_id: 3, vote: 1, story_id: 1, success: false
 Post.create content: '2nd potential post of 1st story', user_id: 4, vote: 4, story_id: 1, success: false
 Post.create content: '3rd potential post of 1st story', user_id: 1, vote: 5, story_id: 1, success: false
 
 Post.create content: '1st post of 2nd story', user_id: 3, vote: 10, story_id: 2, success: true
-Post.create content: '2st post of 2nd story', user_id: 4, vote: 10, story_id: 2, success: true
-Post.create content: '1st potential post of 2nd story', user_id: 3, vote: 9, story_id: 2, success: false
+Post.create content: '2nd post of 2nd story', user_id: 4, vote: 10, story_id: 2, success: true
+Post.create content: '1st potential post of 2nd story', user_id: 3, vote: 2, story_id: 2, success: false
 Post.create content: '2nd potential post of 2nd story', user_id: 4, vote: 4, story_id: 2, success: false
 Post.create content: '3rd potential post of 2nd story', user_id: 1, vote: 5, story_id: 2, success: false
 

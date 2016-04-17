@@ -22,7 +22,20 @@
 	<% end %>
 </p>
 
-<p><% @story.posts.each do |p| %>
+<p>Posts to be voted on:
+	<% posts_sorted_by_votes = @story.posts.sort_by {|post| post.score}.reverse! %>
+	<% posts_sorted_by_votes.each do |p| %>
+	<% if p.success == false %>
+	<table>
+		<tr>
+		<td><b>Content</b>:  <%= p.content %> </td>
+		<td><b>Votes</b>:  <%= p.score %> </td>
+	<table>
+	<% end %>
+<% end %></p>
+
+<p>Everything:
+	<% @story.posts.each do |p| %>
 	<table>
 		<tr>
 		<td><b>Content</b>:  <%= p.content %> </td>
