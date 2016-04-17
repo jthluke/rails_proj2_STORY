@@ -32,9 +32,9 @@ Post.create content: '1st potential post of 2nd story', user_id: 3, vote: 2, sto
 Post.create content: '2nd potential post of 2nd story', user_id: 4, vote: 4, story_id: 2, success: false
 Post.create content: '3rd potential post of 2nd story', user_id: 1, vote: 5, story_id: 2, success: false
 
-1.upto(100) do |i|
-   Vote.create votable_id: 1, votable_type: 'Post'
-end
+# 1.upto(100) do |i|
+#    Vote.create votable_id: 1, votable_type: 'Post'
+# end
 
 # create_table "votes", force: :cascade do |t|
 #   t.integer  "votable_id"

@@ -9,6 +9,7 @@ class PostsController < ApplicationController
 		@post = Post.create post_params
 		@post.user_id = current_user.id
 		@post.content = post_params[:content]
+		@post.success = false
 		@post.vote = 0
 		if @post.save
 			redirect_to story_url(id:@post.story.id)
@@ -18,40 +19,47 @@ class PostsController < ApplicationController
 		end
 	end
 
+  def upvote
+    @post = Post.find(params[:id])
+    @post.liked_by current_user
+		if @post.score == 2 && @post.success == false
+			@post.success = true
+			@post.save
+			story = Story.find(@post.story_id)
+			# old = story.posts
+			# story.posts = []
+			story.posts.each do |p|
+				if p.success == false
+
+					story.posts.delete(p)
+				end
+			end
+		end
+		redirect_to story_url(id:@post.story.id)
+  end
+
+    def downvote
+      @post = Post.find(params[:id])
+      @post.disliked_by current_user
+      redirect_to story_url(id:@post.story_id)
+    end
+
+	  def unupvote
+          @post = Post.find(params[:id])
+	      @post.unliked_by current_user
+          redirect_to story_url(id:@post.story_id)
+	  end
+	    
+	  def undownvote
+          @post = Post.find(params[:id])
+	    @post.undisliked_by current_user
+          redirect_to story_url(id:@post.story_id)
+	  end
+
+
 	private
 	def post_params
 		params.require(:post).permit(:content, :story_id)
 	end
-
-
-
-
-  def upvote
-    @post = Post.find(params[:id])
-    @post.upvote_by current_user
-		if @post.votes == 10
-			@post.success = true
-			story = Story.find(@post.story_id)
-			old = story.posts
-			story.posts = []
-			old.each do |p|
-				if p.success == false
-					story.posts.push(p)
-		redirect_to story_url(id:@post.story.id)
-  end
-
-
-    def downvote
-      @post = Post.find(params[:id])
-      @post.downvote_by current_user
-      redirect_to story_url(id:@post.story_id)
-    end
-
-
-	private
-	def post_params
-		params.require(:post).permit(:content)
-	end
-
 
 end
