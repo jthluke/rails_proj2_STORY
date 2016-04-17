@@ -9,6 +9,7 @@ class PostsController < ApplicationController
 		@post = Post.create post_params
 		@post.user_id = current_user.id
 		@post.content = post_params[:content]
+		@post.success = false
 		@post.vote = 0
 		if @post.save
 			redirect_to story_url(id:@post.story.id)
@@ -21,7 +22,7 @@ class PostsController < ApplicationController
   def upvote
     @post = Post.find(params[:id])
     @post.liked_by current_user
-		if @post.score == 2
+		if @post.score == 2 && @post.success == false
 			@post.success = true
 			@post.save
 			story = Story.find(@post.story_id)
