@@ -1,8 +1,9 @@
 <h3>Story</h3>
 
 <p>
+<!-- <%= link_to "Create new Post", new_post_path(story_id: @story.id) %> -->
+<%= button_to "Create new Post", new_post_path(), :class => "button medium", :method => :get, params:{story_id: @story.id} %>
 
-<%= button_to "Create new Post", new_post_path, :class => "button medium", :method => :get %>
 
 </p>
 

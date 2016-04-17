@@ -1,5 +1,6 @@
 <h1> Create new post </h1>
 <%= simple_form_for @post do |f| %>
   <%= f.input :content %>
+  <%= f.hidden_field :story_id, value: @story.id %>
   <%= f.submit %>
 <% end %>

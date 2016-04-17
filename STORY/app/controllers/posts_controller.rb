@@ -2,23 +2,25 @@ class PostsController < ApplicationController
 
 	def new
 		@post = Post.new
+		@story = Story.find(params[:story_id])
 	end
 
 	def create
 		@post = Post.create post_params
 		@post.user_id = current_user.id
+		@post.content = post_params[:content]
 		@post.vote = 0
 		if @post.save
-			redirect_to story_url(id:@post.story_id)
+			redirect_to story_url(id:@post.story.id)
 		else
 			flash[:error] = @post.errors.full_messages.to_sentence
-			redirect_to story_url(id:@post.story_id)
+			redirect_to story_url(id:@post.story.id)
 		end
 	end
 
 	private
 	def post_params
-		params.require(:post).permit(:content)
+		params.require(:post).permit(:content, :story_id)
 	end
 
     def upvote
