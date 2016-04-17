@@ -28,6 +28,7 @@ class StoriesController < ApplicationController
       else
       	flash[:error] = @story.errors.full_messages.to_
       	redirect_to root
+      end
     end
 
 end
