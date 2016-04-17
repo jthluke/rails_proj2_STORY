@@ -18,7 +18,6 @@ class PostsController < ApplicationController
 		end
 	end
 
-
   def upvote
     @post = Post.find(params[:id])
     @post.upvote_by current_user
@@ -30,6 +29,7 @@ class PostsController < ApplicationController
 			# story.posts = []
 			story.posts.each do |p|
 				if p.success == false
+
 					story.posts.delete(p)
 				end
 			end
@@ -37,16 +37,15 @@ class PostsController < ApplicationController
 		redirect_to story_url(id:@post.story.id)
   end
 
-  def downvote
-    @post = Post.find(params[:id])
-    @post.downvote_by current_user
-    redirect_to story_url(id:@post.story.id)
-  end
+    def downvote
+      @post = Post.find(params[:id])
+      @post.downvote_by current_user
+      redirect_to story_url(id:@post.story_id)
+    end
 
 	private
 	def post_params
 		params.require(:post).permit(:content, :story_id)
 	end
-
 
 end

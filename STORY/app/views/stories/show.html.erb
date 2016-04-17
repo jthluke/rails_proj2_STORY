@@ -11,9 +11,6 @@
     <%= button_to "Create new Post", new_user_session_path, :class => "button medium", :method => :get %>
 <% end %></p>
 
-<p>Beginning: <%= @story.beginning if @story.beginning %></p>
-
-
 <p>The Story So Far:  <%= @story.beginning if @story.beginning %>
 	<% @story.posts.each do |p| %>
 		<% if p.success == true %>
