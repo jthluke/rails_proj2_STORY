@@ -23,16 +23,28 @@ class PostsController < ApplicationController
 		params.require(:post).permit(:content, :story_id)
 	end
 
-    def upvote
-      @post = Post.find(params[:id])
-      @post.upvote_by current_user
-      redirect_to stories_path
-    end
+	if @post.votes == 10
+		@post.success = true
+		story = Story.find(@post.story_id)
+		old = story.posts
+		story.posts = []
+		old.each do |p|
+			if p.success == false
+				story.posts.push(p)
 
-    def downvote
-      @post = Post.find(params[:id])
-      @post.downvote_by current_user
-      redirect_to stories_path
-    end
+
+  def upvote
+    @post = Post.find(params[:id])
+    @post.upvote_by current_user
+    redirect_to stories_path
+  end
+
+  def downvote
+    @post = Post.find(params[:id])
+    @post.downvote_by current_user
+    redirect_to stories_path
+  end
+
+	def
 
 end

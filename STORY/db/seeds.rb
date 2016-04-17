@@ -31,3 +31,19 @@ Post.create content: '2st post of 2nd story', user_id: 4, vote: 10, story_id: 2,
 Post.create content: '1st potential post of 2nd story', user_id: 3, vote: 9, story_id: 2, success: false
 Post.create content: '2nd potential post of 2nd story', user_id: 4, vote: 4, story_id: 2, success: false
 Post.create content: '3rd potential post of 2nd story', user_id: 1, vote: 5, story_id: 2, success: false
+
+1.upto(100) do |i|
+   Vote.create votable_id: 1, votable_type: 'Post'
+end
+
+# create_table "votes", force: :cascade do |t|
+#   t.integer  "votable_id"
+#   t.string   "votable_type"
+#   t.integer  "voter_id"
+#   t.string   "voter_type"
+#   t.boolean  "vote_flag"
+#   t.string   "vote_scope"
+#   t.integer  "vote_weight"
+#   t.datetime "created_at"
+#   t.datetime "updated_at"
+# end
