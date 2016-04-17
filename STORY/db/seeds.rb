@@ -8,8 +8,8 @@
 
 
 # Make users
-%w(Leeren@b, Justin@b, Iris@b, Ian@b).each do |email|
-  User.create email: email, password: '123456', password_confirmation: '123456'
+%w(leeren@berkeley.edu, justin@berkeley.edu, iris@berkeley.edu, ian@berkeley.edu).each do |email|
+  User.create email: email, password: '12345678', password_confirmation: '12345678'
 end
 
 # Make stories
