@@ -1,0 +1,58 @@
+<h3>Story</h3>
+
+<p>
+
+
+
+<% if (current_user) %>
+	<!-- <%= link_to "Create new Post", new_post_path(story_id: @story.id) %> -->
+	<%= button_to "Create new Post", new_post_path(), :class => "button medium", :method => :get, params:{story_id: @story.id} %>
+<% else %>
+    <%= button_to "Create new Post", new_user_session_path, :class => "button medium", :method => :get %>
+<% end %></p>
+
+<p>The Story So Far:  <%= @story.beginning if @story.beginning %>
+	<% @story.posts.each do |p| %>
+		<% if p.success == true %>
+			<%= p.content + ' '%>
+		<% end %>
+	<% end %>
+</p>
+
+<p>Posts to be voted on:
+	<% posts_sorted_by_votes = @story.posts.sort_by {|post| post.score}.reverse! %>
+	<% posts_sorted_by_votes.each do |p| %>
+	<% if p.success == false %>
+	<table>
+		<tr>
+		<td><b>Content</b>:  <%= p.content %> </td>
+		<td><b>Votes</b>:  <%= p.score %> </td>
+	<table>
+	<% end %>
+<% end %></p>
+
+<p>Everything:
+	<% @story.posts.each do |p| %>
+	<table>
+		<tr>
+		<td><b>Content</b>:  <%= p.content %> </td>
+		<td><b>Likes</b>:  <%= p.score %> </td>
+		<% if (current_user) %>
+            <% if (current_user.voted_up_on? p) %>
+                <%= link_to "Unlike", unlike_post_path(p), method: :put %>   
+            <% else %>         
+                <%= link_to "Like", like_post_path(p), method: :put %>
+            <% end %>
+
+            <% if (current_user.voted_down_on? s) %>
+                <%= link_to "Undislike", undislike_post_path(p), method: :put%>
+            <% else %>
+                <%= link_to "Dislike", dislike_post_path(p), method: :put%>
+            <% end %>
+        <% else %>
+            <%= link_to "Like", new_user_session_path, method: :get %>
+            <%= link_to "Dislike", new_user_session_path, method: :get %>
+        <% end %>
+
+	<table>
+<% end %></p>
