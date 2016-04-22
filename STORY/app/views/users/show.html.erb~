@@ -1,8 +1,8 @@
-<h>Name</p>
+<h2><%=@user.username%></h2>
 <p>Email: <%= @user.email %></p>
 <p> Member since <%= @user.created_at.strftime("%b %d, %Y")%></p>
 
-<p>My Posts
+<h2>My Posts</h2>
     <% posts = Post.where(:user_id => current_user.id) %>
     <% if (posts.size > 0) %>
         <% posts.each do |p| %>
@@ -15,9 +15,8 @@
 	<% else %>
 	    You have no posts yet!
 	<% end %>
-</p>
 
-<p>My Stories<br>
+<h2>My Stories<br>
     <% stories = Story.where(:user_id => current_user.id) %>
     <% if (stories.size > 0) %>
         <% stories.each do |s| %>
