@@ -13,7 +13,7 @@
 	    </table>
 	    <% end %>
 	<% else %>
-	    You have no stories yet! 
+	    You have no stories yet.
     	<%= link_to "Create one now!", new_story_path, :method => :get %>
     <% end %>
 
@@ -25,6 +25,7 @@
 		    <tr>
 		    <td><b>Content</b>:  <%= p.content %> </td>
 		    <td><b>Likes</b>:  <%= p.score %> </td>
+		    <%= link_to "View Story", Story.find(p.story_id) %>
 	    <table>
 	    <% end %>
 	<% else %>
