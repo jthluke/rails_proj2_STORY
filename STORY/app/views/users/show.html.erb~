@@ -1,8 +1,16 @@
-<h2><%=@user.username%></h2>
-<p>Email: <%= @user.email %></p>
+<center><h2><%=@user.username%></h2>
+<% if (@user == current_user) %>
+    <p> Email: <%= @user.email %></p>
+<% end %>
 <p> Member since <%= @user.created_at.strftime("%b %d, %Y")%></p>
+<p> Points: <%= @user.points%></p>
+</center>
 
-<h2>My Stories</h2>
+<% if (@user == current_user) %>
+    <h2> My Stories </h2>
+<% else %>    
+    <h2><%=@user.username%>'s Stories</h2>
+<% end %>
     <% stories = Story.where(:user_id => current_user.id) %>
     <% if (stories.size > 0) %>
         <% stories.each do |s| %>
@@ -16,7 +24,11 @@
     	<%= link_to "Create one now!", new_story_path, :method => :get %>
     <% end %>
 
-<h2>My Posts</h2>
+<% if (@user == current_user) %>
+    <h2> My Posts </h2>
+<% else %>    
+    <h2><%=@user.username%>'s Posts</h2>
+<% end %>
     <% posts = Post.where(:user_id => current_user.id) %>
     <% if (posts.size > 0) %>
         <% posts.each do |p| %>
