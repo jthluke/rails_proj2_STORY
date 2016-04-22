@@ -4,7 +4,7 @@
 <p> Points: <%= @user.points%></p>
 
 <h2>My Stories</h2>
-    <% stories = Story.where(:user_id => current_user.id) %>
+    <% stories = @user.stories.sort_by {|story| story.score}.reverse! %>
     <% if (stories.size > 0) %>
         <% stories.each do |s| %>
         <table>
@@ -18,7 +18,7 @@
     <% end %>
 
 <h2>My Posts</h2>
-    <% posts = Post.where(:user_id => current_user.id) %>
+    <% posts = @user.posts.sort_by {|post| post.score}.reverse! %>
     <% if (posts.size > 0) %>
         <% posts.each do |p| %>
 	    <table>
