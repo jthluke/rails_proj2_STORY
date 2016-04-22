@@ -13,11 +13,11 @@
 
 <p>The Story So Far:
 	<u><%= @story.beginning + ' ' if @story.beginning %></u>
-	<font size = "3"><%= '('+@story.user.username+')' if @story.beginning %></font>
+	<font size = "3">(<%= link_to @story.user.username, @story.user if @story.beginning %>)</font>
 	<% @story.posts.each do |p| %>
 		<% if p.success == true %>
 			<u><%= p.content + ' '%></u>
-			<font size = "3"><%= '('+p.user.username+')' %></font>
+			<font size = "3">(<%=link_to p.user.username, p.user%>)</font>
 		<% end %>
 	<% end %>
 </p>
