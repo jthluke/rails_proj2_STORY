@@ -20,7 +20,7 @@ Story.create user_id: 4, beginning: 'Skipping classes on Friday'
 
 
 # Make posts
-Post.create content: '1st post of 1st story', user_id: 1 story_id: 1, success: true
+Post.create content: '1st post of 1st story', user_id: 1, story_id: 1, success: true
 Post.create content: '2nd post of 1st story', user_id: 2 story_id: 1, success: true
 Post.create content: '1st potential post of 1st story', user_id: 3, vote: 1, story_id: 1, success: false
 Post.create content: '2nd potential post of 1st story', user_id: 4, vote: 4, story_id: 1, success: false
