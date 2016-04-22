@@ -1,6 +1,7 @@
 <h2><%=@user.username%></h2>
 <p>Email: <%= @user.email %></p>
 <p> Member since <%= @user.created_at.strftime("%b %d, %Y")%></p>
+<p> Points: <%= @user.points%></p>
 
 <h2>My Stories</h2>
     <% stories = Story.where(:user_id => current_user.id) %>

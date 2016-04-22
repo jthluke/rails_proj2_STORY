@@ -8,10 +8,10 @@
 
 
 # Make users
-User.create username: 'Leeren', email: 'leeren@berkeley.edu', password: '12345678', password_confirmation: '12345678'
-User.create username: 'Justin', email: 'justin@berkeley.edu', password: '12345678', password_confirmation: '12345678'
-User.create username: 'Iris', email: 'iris@berkeley.edu', password: '12345678', password_confirmation: '12345678'
-User.create username: 'Ian', email: 'ian@berkeley.edu', password: '12345678', password_confirmation: '12345678'
+User.create username: 'Leeren', email: 'leeren@berkeley.edu', password: '12345678', password_confirmation: '12345678', points:0
+User.create username: 'Justin', email: 'justin@berkeley.edu', password: '12345678', password_confirmation: '12345678', points:0
+User.create username: 'Iris', email: 'iris@berkeley.edu', password: '12345678', password_confirmation: '12345678', points:0
+User.create username: 'Ian', email: 'ian@berkeley.edu', password: '12345678', password_confirmation: '12345678', points:0
 
 # Make stories
 Story.create user_id: 1, beginning: 'Driving down the street'
