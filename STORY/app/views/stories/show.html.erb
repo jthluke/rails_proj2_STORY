@@ -13,11 +13,11 @@
 
 <p>The Story So Far:
 	<u><%= @story.beginning + ' ' if @story.beginning %></u>
-	<font size = "3"><%= '('+@story.user.email+')' if @story.beginning %></font>
+	<font size = "3"><%= '('+@story.user.username+')' if @story.beginning %></font>
 	<% @story.posts.each do |p| %>
 		<% if p.success == true %>
 			<u><%= p.content + ' '%></u>
-			<font size = "3"><%= '('+p.user.email+')' %></font>
+			<font size = "3"><%= '('+p.user.username+')' %></font>
 		<% end %>
 	<% end %>
 </p>
@@ -30,7 +30,7 @@
 		<tr>
 		<td><b>Content</b>:  <%= p.content %> </td>
 		<td><b>Likes</b>:  <%= p.score %> </td>
-		<td><b>User</b>:  <%= p.user.email %> </td>
+		<td><b>User</b>:  <%= p.user.username %> </td>
 		<% if (current_user) %>
             <% if (current_user.voted_up_on? p) %>
                 <%= link_to "Unlike", unlike_post_path(p), method: :put %>   
@@ -57,7 +57,7 @@
 		<tr>
 		<td><b>Content</b>:  <%= p.content %> </td>
 		<td><b>Likes</b>:  <%= p.score %> </td>
-		<td><b>User</b>:  <%= p.user.email %> </td>
+		<td><b>User</b>:  <%= p.user.username %> </td>
 		<% if (current_user) %>
             <% if (current_user.voted_up_on? p) %>
                 <%= link_to "Unlike", unlike_post_path(p), method: :put %>   
