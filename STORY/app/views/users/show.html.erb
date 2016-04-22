@@ -10,11 +10,11 @@
 <h2>My Stories</h2>
     <% stories = @user.stories.sort_by {|story| story.score}.reverse! %>
 
-<% if (@user == current_user) %>
-    <h2> My Stories </h2>
-<% else %>    
-    <h2><%=@user.username%>'s Stories</h2>
-<% end %>
+	<% if (@user == current_user) %>
+	    <h2> My Stories </h2>
+	<% else %>    
+	    <h2><%=@user.username%>'s Stories</h2>
+	<% end %>
 
     <% if (stories.size > 0) %>
         <% stories.each do |s| %>
@@ -32,11 +32,11 @@
 <h2>My Posts</h2>
     <% posts = @user.posts.sort_by {|post| post.score}.reverse! %>
 
-<% if (@user == current_user) %>
-    <h2> My Posts </h2>
-<% else %>    
-    <h2><%=@user.username%>'s Posts</h2>
-<% end %>
+	<% if (@user == current_user) %>
+	    <h2> My Posts </h2>
+	<% else %>    
+	    <h2><%=@user.username%>'s Posts</h2>
+	<% end %>
 
     <% if (posts.size > 0) %>
         <% posts.each do |p| %>

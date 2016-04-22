@@ -1,4 +1,4 @@
-<center><h2><%=@user.username%></h2>
+<center><h1><%=@user.username%></h2>
 <% if (@user == current_user) %>
     <p> Email: <%= @user.email %></p>
 <% end %>
@@ -11,7 +11,7 @@
 <% else %>    
     <h2><%=@user.username%>'s Stories</h2>
 <% end %>
-    <% stories = Story.where(:user_id => current_user.id) %>
+    <% stories = Story.where(:user_id => @user.id) %>
     <% if (stories.size > 0) %>
         <% stories.each do |s| %>
         <table>
