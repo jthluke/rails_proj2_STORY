@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
   has_many :stories
   has_many :posts
   acts_as_voter
+  validates_presence_of :username
+  validates_uniqueness_of :username
 end
