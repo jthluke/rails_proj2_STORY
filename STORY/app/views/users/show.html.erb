@@ -1,4 +1,33 @@
-<h>Name</p>
+<h><%=@user.username%></p>
 <p>Email: <%= @user.email %></p>
 <p> Member since <%= @user.created_at.strftime("%b %d, %Y")%></p>
 
+<p>My Posts
+    <% posts = Post.where(:user_id => current_user.id) %>
+    <% if (posts.size > 0) %>
+        <% posts.each do |p| %>
+	    <table>
+		    <tr>
+		    <td><b>Content</b>:  <%= p.content %> </td>
+		    <td><b>Likes</b>:  <%= p.score %> </td>
+	    <table>
+	    <% end %>
+	<% else %>
+	    You have no posts yet!
+	<% end %>
+</p>
+
+<p>My Stories<br>
+    <% stories = Story.where(:user_id => current_user.id) %>
+    <% if (stories.size > 0) %>
+        <% stories.each do |s| %>
+        <table>
+            <h2>Story <%= s.id %> : <%= link_to s.beginning, s%></h2>
+            <h3>Likes: <%= s.score %></h3>
+	    </table>
+	    <% end %>
+	<% else %>
+	    You have no stories yet! 
+    	<%= link_to "Create one now!", new_user_session_path, :method => :get %>
+    <% end %>
+</p>
