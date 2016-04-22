@@ -11,7 +11,7 @@
     <%= button_to "Create new Post", new_user_session_path, :class => "button medium", :method => :get %>
 <% end %></p>
 
-<p>The Story So Far:
+<p><b>The Story So Far:</b><br>
 	<u><%= @story.beginning + ' ' if @story.beginning %></u>
 	<font size = "3">(<%= link_to @story.user.username, @story.user if @story.beginning %>)</font>
 	<% @story.posts.each do |p| %>
@@ -22,58 +22,90 @@
 	<% end %>
 </p>
 
-<p>Posts to be voted on:
+<p><b>Succeeded Posts:</b>
+	<% posts_sorted_by_date = @story.posts.sort_by {|post| post.updated_at}.reverse! %>
+	<% posts_sorted_by_date.each do |p| %>
+	<% if p.success == true %>
+	<table>
+		<tr>
+			<td><b>Content</b>:  <%= p.content %> </td>
+			<td><b>Likes</b>:  <%= p.score %> </td>
+			<td><b>User</b>:  <%= p.user.username %> </td>
+			<% if (current_user) %>
+	            <% if (current_user.voted_up_on? p) %>
+	                <%= link_to "Unlike", unlike_post_path(p), method: :put %>   
+	            <% else %>         
+	                <%= link_to "Like", like_post_path(p), method: :put %>
+	            <% end %>
+
+	            <% if (current_user.voted_down_on? p) %>
+	                <%= link_to "Undislike", undislike_post_path(p), method: :put%>
+	            <% else %>
+	                <%= link_to "Dislike", dislike_post_path(p), method: :put%>
+	            <% end %>
+	        <% else %>
+	            <%= link_to "Like", new_user_session_path, method: :get %>
+	            <%= link_to "Dislike", new_user_session_path, method: :get %>
+	        <% end %>
+    	</tr>
+	</table>
+	<% end %>
+<% end %></p>
+
+<p><b>Posts to be voted on:</b>
 	<% posts_sorted_by_votes = @story.posts.sort_by {|post| post.score}.reverse! %>
 	<% posts_sorted_by_votes.each do |p| %>
 	<% if p.success == false %>
 	<table>
 		<tr>
-		<td><b>Content</b>:  <%= p.content %> </td>
-		<td><b>Likes</b>:  <%= p.score %> </td>
-		<td><b>User</b>:  <%= p.user.username %> </td>
-		<% if (current_user) %>
-            <% if (current_user.voted_up_on? p) %>
-                <%= link_to "Unlike", unlike_post_path(p), method: :put %>   
-            <% else %>         
-                <%= link_to "Like", like_post_path(p), method: :put %>
-            <% end %>
+			<td><b>Content</b>:  <%= p.content %> </td>
+			<td><b>Likes</b>:  <%= p.score %> </td>
+			<td><b>User</b>:  <%= p.user.username %> </td>
+			<% if (current_user) %>
+	            <% if (current_user.voted_up_on? p) %>
+	                <%= link_to "Unlike", unlike_post_path(p), method: :put %>   
+	            <% else %>         
+	                <%= link_to "Like", like_post_path(p), method: :put %>
+	            <% end %>
 
-            <% if (current_user.voted_down_on? p) %>
-                <%= link_to "Undislike", undislike_post_path(p), method: :put%>
-            <% else %>
-                <%= link_to "Dislike", dislike_post_path(p), method: :put%>
-            <% end %>
-        <% else %>
-            <%= link_to "Like", new_user_session_path, method: :get %>
-            <%= link_to "Dislike", new_user_session_path, method: :get %>
-        <% end %>
-	<table>
+	            <% if (current_user.voted_down_on? p) %>
+	                <%= link_to "Undislike", undislike_post_path(p), method: :put%>
+	            <% else %>
+	                <%= link_to "Dislike", dislike_post_path(p), method: :put%>
+	            <% end %>
+	        <% else %>
+	            <%= link_to "Like", new_user_session_path, method: :get %>
+	            <%= link_to "Dislike", new_user_session_path, method: :get %>
+	        <% end %>
+    	</tr>
+	</table>
 	<% end %>
 <% end %></p>
 
-<p>Everything:
+<!--<p>Everything:
 	<% @story.posts.each do |p| %>
 	<table>
 		<tr>
-		<td><b>Content</b>:  <%= p.content %> </td>
-		<td><b>Likes</b>:  <%= p.score %> </td>
-		<td><b>User</b>:  <%= p.user.username %> </td>
-		<% if (current_user) %>
-            <% if (current_user.voted_up_on? p) %>
-                <%= link_to "Unlike", unlike_post_path(p), method: :put %>   
-            <% else %>         
-                <%= link_to "Like", like_post_path(p), method: :put %>
-            <% end %>
+			<td><b>Content</b>:  <%= p.content %> </td>
+			<td><b>Likes</b>:  <%= p.score %> </td>
+			<td><b>User</b>:  <%= p.user.username %> </td>
+			<% if (current_user) %>
+	            <% if (current_user.voted_up_on? p) %>
+	                <%= link_to "Unlike", unlike_post_path(p), method: :put %>   
+	            <% else %>         
+	                <%= link_to "Like", like_post_path(p), method: :put %>
+	            <% end %>
 
-            <% if (current_user.voted_down_on? p) %>
-                <%= link_to "Undislike", undislike_post_path(p), method: :put%>
-            <% else %>
-                <%= link_to "Dislike", dislike_post_path(p), method: :put%>
-            <% end %>
-        <% else %>
-            <%= link_to "Like", new_user_session_path, method: :get %>
-            <%= link_to "Dislike", new_user_session_path, method: :get %>
-        <% end %>
+	            <% if (current_user.voted_down_on? p) %>
+	                <%= link_to "Undislike", undislike_post_path(p), method: :put%>
+	            <% else %>
+	                <%= link_to "Dislike", dislike_post_path(p), method: :put%>
+	            <% end %>
+	        <% else %>
+	            <%= link_to "Like", new_user_session_path, method: :get %>
+	            <%= link_to "Dislike", new_user_session_path, method: :get %>
+	        <% end %>
+   		</tr>
 
-	<table>
-<% end %></p>
+	</table>
+<% end %></p>-->
