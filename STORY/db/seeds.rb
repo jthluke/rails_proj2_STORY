@@ -8,10 +8,10 @@
 
 
 # Make users
-User.create email: 'leeren@berkeley.edu', password: '12345678', password_confirmation: '12345678'
-User.create email: 'justin@berkeley.edu', password: '12345678', password_confirmation: '12345678'
-User.create email: 'iris@berkeley.edu', password: '12345678', password_confirmation: '12345678'
-User.create email: 'ian@berkeley.edu', password: '12345678', password_confirmation: '12345678'
+User.create email: 'leeren@berkeley.edu', password: '12345678', password_confirmation: '12345678', points:0
+User.create email: 'justin@berkeley.edu', password: '12345678', password_confirmation: '12345678', points:0
+User.create email: 'iris@berkeley.edu', password: '12345678', password_confirmation: '12345678', points:0
+User.create email: 'ian@berkeley.edu', password: '12345678', password_confirmation: '12345678', points:0
 
 # Make stories
 Story.create vote: 19, user_id: 1, beginning: 'Driving down the street'

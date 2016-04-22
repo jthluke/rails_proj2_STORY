@@ -8,6 +8,7 @@ class PostsController < ApplicationController
 	def create
 		@post = Post.create post_params
 		@post.user_id = current_user.id
+        current_user.points += 1
 		@post.content = post_params[:content]
 		@post.success = false
 		@post.vote = 0
@@ -21,11 +22,14 @@ class PostsController < ApplicationController
 
   def upvote
     @post = Post.find(params[:id])
+    user = User.find(@post.user_id)
+    user.points += 1
     @post.liked_by current_user
-		if @post.score == 2 && @post.success == false
+		if @post.score == 1 && @post.success == false
 			@post.success = true
 			@post.save
 			story = Story.find(@post.story_id)
+            user.points += 5
 			# old = story.posts
 			# story.posts = []
 			story.posts.each do |p|
@@ -40,6 +44,8 @@ class PostsController < ApplicationController
 
     def downvote
       @post = Post.find(params[:id])
+      user = User.find(@post.user_id)
+      user.points -= 1
       @post.disliked_by current_user
       redirect_to story_url(id:@post.story_id)
     end
