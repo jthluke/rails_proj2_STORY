@@ -7,9 +7,9 @@
 <% end %>
 </p>
 
-<% @stories.each do |s| %>
-    <h2>Story <%= s.id %> : <%= link_to s.beginning, s%></h2>
-    <h3>Likes: <%= s.score %></h3>
+<% @stories.sort_by {|story| story.score}.reverse!.each do |s| %>
+    <h1><%= link_to s.beginning, s%></h2>
+    <p>Likes: <%= s.score %></p>
     <% if (current_user) %>
         <% if (current_user.voted_up_on? s) %>
             <%= link_to "Unlike", unlike_story_path(s), method: :put %>   
@@ -17,7 +17,7 @@
             <%= link_to "Like", like_story_path(s), method: :put %>
         <% end %>
         
-        <% if (current_user_voted_down_on? s) %>
+        <% if (current_user.voted_down_on? s) %>
             <%= link_to "Undislike", undislike_story_path(s), method: :put%>
         <% else %>
             <%= link_to "Dislike", dislike_story_path(s), method: :put%>

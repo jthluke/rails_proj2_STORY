@@ -7,8 +7,8 @@
 <% end %>
 </p>
 
-<% @stories.each do |s| %>
-    <h2>Story <%= s.id %> : <%= link_to s.beginning, s%></h2>
+<% @stories.sort_by {|story| story.score}.reverse!.each do |s| %>
+    <h1><%= link_to s.beginning, s%></h2>
     <h3>Likes: <%= s.score %></h3>
     <% if (current_user) %>
         <% if (current_user.voted_up_on? s) %>
