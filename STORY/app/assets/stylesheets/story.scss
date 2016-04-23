@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .body {
 	font-family: Papyrus, fantasy;
-	font-size: 14px;
+	font-size: 20px;
 	margin-top: 20px;
   margin-left: 50px;
   margin-right: 50px;
@@ -24,7 +24,7 @@ blockquote {
 	font-style: normal;
 	font-variant: normal;
 	font-weight: 400;
-	line-height: 30px;
+	line-height: 65px;
 }
 
 h3 {
@@ -62,3 +62,10 @@ p {
     margin-left: 15px;
     border-left: 1px dotted #DDF;
 }
+
+.container {height: 100%; width:100%; font-size: 0;}
+.votes, .user, .contentbody {display: inline-block; *display: inline; zoom: 1; vertical-align: top; font-size: 12px;}
+.votes {width: 8%; }
+.user {width: 10%; position: relative; top: 50%; transform: translateY(20%); }
+.contentbody {width: 50%; }
+.likes {text-align: center}
