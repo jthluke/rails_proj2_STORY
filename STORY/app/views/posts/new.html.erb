@@ -1,11 +1,15 @@
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>  
+<%= stylesheet_link_tag "story" %>
+<div class="body">
 
-<h1> Create new post </h1>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+<h1> Create New Post </h1>
 <%= simple_form_for @post do |f| %>
   <%= f.input :content, input_html: { maxlength: 75, class: "message" } %>
   <span class="countdown"></span>
   <%= f.hidden_field :story_id, value: @story.id %>
-  <%= f.submit %>
+  <br>
+  <%= f.submit "Create Post", :class => "button small" %>
 <% end %>
 <script>
 function updateCountdown() {
@@ -19,3 +23,4 @@ jQuery(document).ready(function($) {
     $('.message').keyup(updateCountdown);
 });
 </script>
+</div>

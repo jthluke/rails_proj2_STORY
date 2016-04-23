@@ -1,14 +1,13 @@
 <%= stylesheet_link_tag "story" %>
-<h3>Story</h3>
+<div class="body">
+<h3><%=@story.beginning%>...</h3>
 
-<p>
 <% if (current_user) %>
-	<!-- <%= link_to "Create new Post", new_post_path(story_id: @story.id) %> -->
-	<%= button_to "Create new Post", new_post_path(), :class => "button medium", :method => :get, params:{story_id: @story.id} %>
+	<!-- <%= link_to "New Post", new_post_path(story_id: @story.id) %> -->
+	<%= button_to "New Post", new_post_path(), :class => "button medium", :method => :get, params:{story_id: @story.id}, :style => "float: right" %>
 <% else %>
-    <%= button_to "Create new Post", new_user_session_path, :class => "button medium", :method => :get %>
+    <%= button_to "New Post", new_user_session_path, :class => "button medium", :method => :get, :style => "float: right" %>
 <% end %>
-</p>
 
 
 <head>
@@ -23,106 +22,103 @@ $(document).ready(function(){
     $('[data-toggle="popover"]').popover({
         placement : 'top',
         html : true,
-        content : '<div class="media"><%= image_tag @story.user.photo.url(:thumb) %><div class="media-body"><h4 class="media-heading"><%=link_to @story.user.username, @story.user%> | <%= @story.user.points%></h4></div></div>'
+        content : '<%= image_tag @story.user.photo.url, size: "50x50" %><h4 class="media-heading"><%=link_to @story.user.username, @story.user%> | <%= @story.user.points%></h4>'
     });
 });
 </script>
 
-<a href="#story" data-toggle="collapse">Story</a>
-<div id="story" class = "collapse">
-
-<p><b>The Story So Far:</b><br>
-
-    <a href="#" data-toggle="popover" title="">
-        <%= @story.beginning + ' ' if @story.beginning %>
+<a href="#story" data-toggle="collapse">The Story</a>
+<div class="story"><div id="story" class = "collapse">
+    <a href="#" data-toggle="popover" data-trigger="hover" title="">
+        <%= @story.beginning + ' ' %>
     </a>
 
 	<% @story.posts.each do |p| %>
-		<% if p.success == true %>
+		<% if p.success %>
 			<script>
 				$(document).ready(function(){
 				    $('[data-toggle="popover<%=p.id%>"]').popover({
 				        placement : 'top',
 				        html : true,
-				        content : '<div class="media"><%= image_tag p.user.photo.url(:thumb) %><div class="media-body"><h4 class="media-heading"><%=link_to p.user.username, p.user%> | <%= p.user.points%></h4></div></div>'
+				        content : '<%= image_tag p.user.photo.url, size: "50x50" %><h4 class="media-heading"><%=link_to p.user.username, p.user%> | <%= p.user.points%></h4>'
 				    });
 				});
 			</script>
-			<a href="#" data-toggle="popover<%=p.id%>" title="">
+			<a href="#" data-toggle="popover<%=p.id%>" data-trigger="hover" title="">
         		<%= p.content + ' '%>
     		</a>
 		<% end %>
 	<% end %>
 </p>
-</div>
+</div></div>
 
+<br>
 
-
-<a href="#posts" data-toggle="collapse">Posts</a>
-<div id="posts" class = "collapse">
-
-<p><b>Succeeded Posts:</b>
+<a href="#posts" data-toggle="collapse">Succeeded Posts</a>
+<div class="posts"><div id="posts" class = "collapse">
 	<% posts_sorted_by_date = @story.posts.sort_by {|post| post.updated_at}.reverse! %>
-	<% posts_sorted_by_date.each do |p| %>
-	<% if p.success == true %>
-	<table>
-		<tr>
+	<% if (posts_sorted_by_date.size > 0) %>
+		<% posts_sorted_by_date.each do |p| %>
+			<% if p.success %>
+				<%= image_tag p.user.photo.url, size: "50x50" %>
+					<blockquote><%= p.content %></blockquote>
+					<b>Likes</b>:  <%= p.score %>
+					<b>User</b>:  <%= p.user.username %>
+					<% if (current_user) %>
+						<% if (current_user.voted_up_on? p) %>
+							<%= link_to "Unlike", unlike_post_path(p), method: :put %>
+						<% else %>
+							<%= link_to "Like", like_post_path(p), method: :put %>
+						<% end %>
 
-		<%= image_tag p.user.photo.url(:thumb) %>
-			<td><b>Content</b>:  <%= p.content %> </td>
-			<td><b>Likes</b>:  <%= p.score %> </td>
-			<td><b>User</b>:  <%= p.user.username %> </td>
-			<% if (current_user) %>
-	            <% if (current_user.voted_up_on? p) %>
-	                <%= link_to "Unlike", unlike_post_path(p), method: :put %>
-	            <% else %>
-	                <%= link_to "Like", like_post_path(p), method: :put %>
-	            <% end %>
+						<% if (current_user.voted_down_on? p) %>
+							<%= link_to "Undislike", undislike_post_path(p), method: :put%>
+						<% else %>
+							<%= link_to "Dislike", dislike_post_path(p), method: :put%>
+						<% end %>
+					<% else %>
+						<%= link_to "Like", new_user_session_path, method: :get %>
+						<%= link_to "Dislike", new_user_session_path, method: :get %>
+					<% end %>
+				<% end %>
+			<% end %></p>
+		<% else %>
+			<br> There are no new posts! <br>
+		<% end %>
+</div></div>
 
-	            <% if (current_user.voted_down_on? p) %>
-	                <%= link_to "Undislike", undislike_post_path(p), method: :put%>
-	            <% else %>
-	                <%= link_to "Dislike", dislike_post_path(p), method: :put%>
-	            <% end %>
-	        <% else %>
-	            <%= link_to "Like", new_user_session_path, method: :get %>
-	            <%= link_to "Dislike", new_user_session_path, method: :get %>
-	        <% end %>
-    	</tr>
-	</table>
-	<% end %>
-<% end %></p>
-</div>
-
-
-<div class="candidates">
-<p><b>Posts to be voted on:</b>
+<br>
+<p><b>What's next?</b>
 	<% posts_sorted_by_votes = @story.posts.sort_by {|post| post.score}.reverse! %>
-	<% posts_sorted_by_votes.each do |p| %>
-	<% if p.success == false %>
-	<table>
-		<tr>
-			<td><b>Content</b>:  <%= p.content %> </td>
-			<td><b>Likes</b>:  <%= p.score %> </td>
-			<td><b>User</b>:  <%= p.user.username %> </td>
-			<% if (current_user) %>
-	            <% if (current_user.voted_up_on? p) %>
-	                <%= link_to "Unlike", unlike_post_path(p), method: :put %>
-	            <% else %>
-	                <%= link_to "Like", like_post_path(p), method: :put %>
-	            <% end %>
+    <% if (posts_sorted_by_votes.size > 0) %>
+	    <% posts_sorted_by_votes.each do |p| %>
+	        <% if p.success == false %>
+	        <table>
+		        <tr>
+			        <blockquote><%= p.content %> </blockquote>
+			        <b>Likes</b>:  <%= p.score %> </td>
+			        <b>User</b>:  <%= p.user.username %>
+			        <% if (current_user) %>
+	                    <% if (current_user.voted_up_on? p) %>
+	                        <%= link_to "Unlike", unlike_post_path(p), method: :put %>
+	                    <% else %>
+	                        <%= link_to "Like", like_post_path(p), method: :put %>
+	                    <% end %>
 
-	            <% if (current_user.voted_down_on? p) %>
-	                <%= link_to "Undislike", undislike_post_path(p), method: :put%>
-	            <% else %>
-	                <%= link_to "Dislike", dislike_post_path(p), method: :put%>
-	            <% end %>
-	        <% else %>
-	            <%= link_to "Like", new_user_session_path, method: :get %>
-	            <%= link_to "Dislike", new_user_session_path, method: :get %>
+	                    <% if (current_user.voted_down_on? p) %>
+	                        <%= link_to "Undislike", undislike_post_path(p), method: :put%>
+	                    <% else %>
+	                        <%= link_to "Dislike", dislike_post_path(p), method: :put%>
+	                    <% end %>
+	                <% else %>
+	                    <%= link_to "Like", new_user_session_path, method: :get %>
+	                    <%= link_to "Dislike", new_user_session_path, method: :get %>
+	                <% end %>
+            	</tr>
+	        </table>
 	        <% end %>
-    	</tr>
-	</table>
-	<% end %>
-<% end %></p>
+        <% end %></p>
+    <% else %>
+        <br>There are no posts yet. <%= link_to "Create one now!", new_post_path(story_id=@story.id) %>
+    <% end %>
 </div>

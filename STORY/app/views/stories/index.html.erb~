@@ -1,22 +1,24 @@
-<h1>FUN STORIES</h1>
+<center><h1>Stories</h1></center>
 <p>
+
 <% if (current_user) %>
-	<%= button_to "Create new Story", new_story_path, :class => "button medium", :method => :get %>
+	<%= button_to "New Story", new_story_path, :class => "button medium", :method => :get %>
 <% else %>
-	<%= button_to "Create new Story", new_user_session_path, :class => "button medium", :method => :get %>
+	<%= button_to "New Story", new_user_session_path, :class => "button medium", :method => :get %>
 <% end %>
 </p>
 
+
 <% @stories.sort_by {|story| story.score}.reverse!.each do |s| %>
-    <h1><%= link_to s.beginning, s%></h2>
-    <p>Likes: <%= s.score %></p>
+    <h1><%= link_to s.beginning, s%>...</h2>
+    <h3>Likes: <%= s.score %></h3>
     <% if (current_user) %>
         <% if (current_user.voted_up_on? s) %>
-            <%= link_to "Unlike", unlike_story_path(s), method: :put %>   
-        <% else %>         
+            <%= link_to "Unlike", unlike_story_path(s), method: :put %>
+        <% else %>
             <%= link_to "Like", like_story_path(s), method: :put %>
         <% end %>
-        
+
         <% if (current_user.voted_down_on? s) %>
             <%= link_to "Undislike", undislike_story_path(s), method: :put%>
         <% else %>

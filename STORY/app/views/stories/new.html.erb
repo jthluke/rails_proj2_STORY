@@ -1,10 +1,13 @@
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>  
+<%= stylesheet_link_tag "story" %>
+<div class="body">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
-<h1> Create new story </h1>
+<h1> Create New Story </h1>
 <%= simple_form_for @story do |f| %>
   <%= f.input :beginning, input_html: { maxlength: 75, class: "message" } %>
   <span class="countdown"></span>
-  <%= f.submit %>
+  <br>
+  <%= f.submit "Create Story", :class => "button small" %>
 <% end %>
 <script>
 function updateCountdown() {
@@ -18,3 +21,4 @@ jQuery(document).ready(function($) {
     $('.message').keyup(updateCountdown);
 });
 </script>
+</div>
