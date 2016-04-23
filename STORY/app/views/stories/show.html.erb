@@ -11,8 +11,6 @@
 </p>
 
 
-
-
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -20,17 +18,39 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover({
+        placement : 'top',
+        html : true,
+        content : '<div class="media"><%= image_tag @story.user.photo.url(:thumb) %><div class="media-body"><h4 class="media-heading"><%=link_to @story.user.username, @story.user%> | <%= @story.user.points%></h4></div></div>'
+    });
+});
+</script>
+
 <a href="#story" data-toggle="collapse">Story</a>
 <div id="story" class = "collapse">
 
 <p><b>The Story So Far:</b><br>
 
-	<u><%= @story.beginning + ' ' if @story.beginning %></u>
-	<font size = "3">(<%= link_to @story.user.username, @story.user if @story.beginning %>)</font>
+    <a href="#" data-toggle="popover" title="">
+        <%= @story.beginning + ' ' if @story.beginning %>
+    </a>
+
 	<% @story.posts.each do |p| %>
 		<% if p.success == true %>
-			<u><%= p.content + ' '%></u>
-			<font size = "3">(<%=link_to p.user.username, p.user%>)</font>
+			<script>
+				$(document).ready(function(){
+				    $('[data-toggle="popover<%=p.id%>"]').popover({
+				        placement : 'top',
+				        html : true,
+				        content : '<div class="media"><%= image_tag p.user.photo.url(:thumb) %><div class="media-body"><h4 class="media-heading"><%=link_to p.user.username, p.user%> | <%= p.user.points%></h4></div></div>'
+				    });
+				});
+			</script>
+			<a href="#" data-toggle="popover<%=p.id%>" title="">
+        		<%= p.content + ' '%>
+    		</a>
 		<% end %>
 	<% end %>
 </p>
@@ -39,8 +59,8 @@
 
 
 <a href="#posts" data-toggle="collapse">Posts</a>
-
 <div id="posts" class = "collapse">
+
 <p><b>Succeeded Posts:</b>
 	<% posts_sorted_by_date = @story.posts.sort_by {|post| post.updated_at}.reverse! %>
 	<% posts_sorted_by_date.each do |p| %>
@@ -49,27 +69,6 @@
 		<tr>
 
 		<%= image_tag p.user.photo.url(:thumb) %>
-		<td><b>Content</b>:  <%= p.content %> </td>
-		<td><b>Likes</b>:  <%= p.score %> </td>
-		<td><b>User</b>:  <%= p.user.username %> </td>
-		<% if (current_user) %>
-            <% if (current_user.voted_up_on? p) %>
-                <%= link_to "Unlike", unlike_post_path(p), method: :put %>   
-            <% else %>         
-                <%= link_to "Like", like_post_path(p), method: :put %>
-            <% end %>
-
-            <% if (current_user.voted_down_on? p) %>
-                <%= link_to "Undislike", undislike_post_path(p), method: :put%>
-            <% else %>
-                <%= link_to "Dislike", dislike_post_path(p), method: :put%>
-            <% end %>
-        <% else %>
-            <%= link_to "Like", new_user_session_path, method: :get %>
-            <%= link_to "Dislike", new_user_session_path, method: :get %>
-        <% end %>
-	<table>
-
 			<td><b>Content</b>:  <%= p.content %> </td>
 			<td><b>Likes</b>:  <%= p.score %> </td>
 			<td><b>User</b>:  <%= p.user.username %> </td>
