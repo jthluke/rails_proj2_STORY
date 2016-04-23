@@ -1,0 +1,50 @@
+<center><h1><%=@user.username%></h2>
+<% if (@user == current_user) %>
+    <p> Email: <%= @user.email %></p>
+<% end %>
+<p> Member since <%= @user.created_at.strftime("%b %d, %Y")%></p>
+<p> Points: <%= @user.points%></p>
+</center>
+
+
+<% stories = @user.stories.sort_by {|story| story.score}.reverse! %>
+
+<% if (@user == current_user) %>
+    <h2> My Stories </h2>
+<% else %>    
+    <h2><%=@user.username%>'s Stories</h2>
+<% end %>
+
+<% if (stories.size > 0) %>
+    <% stories.each do |s| %>
+    <table>
+        <h3>Story <%= s.id %> : <%= link_to s.beginning, s%></h2>
+        <p>Likes: <%= s.score %></p>
+    </table>
+    <% end %>
+<% else %>
+    You have no stories yet.
+	<%= link_to "Create one now!", new_story_path, :method => :get %>
+<% end %>
+
+
+<% posts = @user.posts.sort_by {|post| post.score}.reverse! %>
+
+<% if (@user == current_user) %>
+    <h2> My Posts </h2>
+<% else %>    
+    <h2><%=@user.username%>'s Posts</h2>
+<% end %>
+
+<% if (posts.size > 0) %>
+    <% posts.each do |p| %>
+    <table>
+	    <tr>
+	    <td><b>Content</b>:  <%= p.content %> </td>
+	    <td><b>Likes</b>:  <%= p.score %> </td>
+	    <%= link_to "View Story", Story.find(p.story_id) %>
+    <table>
+    <% end %>
+<% else %>
+    You have no posts yet!
+<% end %>
