@@ -2,8 +2,6 @@
 
 <p>
 
-
-
 <% if (current_user) %>
 	<!-- <%= link_to "Create new Post", new_post_path(story_id: @story.id) %> -->
 	<%= button_to "Create new Post", new_post_path(), :class => "button medium", :method => :get, params:{story_id: @story.id} %>
@@ -11,10 +9,13 @@
     <%= button_to "Create new Post", new_user_session_path, :class => "button medium", :method => :get %>
 <% end %></p>
 
-<p>The Story So Far:  <%= @story.beginning if @story.beginning %>
+<p>The Story So Far:
+	<u><%= @story.beginning + ' ' if @story.beginning %></u>
+	<font size = "3">(<%= link_to @story.user.username, @story.user if @story.beginning %>)</font>
 	<% @story.posts.each do |p| %>
 		<% if p.success == true %>
-			<%= p.content + ' '%>
+			<u><%= p.content + ' '%></u>
+			<font size = "3">(<%=link_to p.user.username, p.user%>)</font>
 		<% end %>
 	<% end %>
 </p>
@@ -25,8 +26,26 @@
 	<% if p.success == false %>
 	<table>
 		<tr>
+		<%= image_tag p.user.photo.url(:medium) %>
 		<td><b>Content</b>:  <%= p.content %> </td>
-		<td><b>Votes</b>:  <%= p.score %> </td>
+		<td><b>Likes</b>:  <%= p.score %> </td>
+		<td><b>User</b>:  <%= p.user.username %> </td>
+		<% if (current_user) %>
+            <% if (current_user.voted_up_on? p) %>
+                <%= link_to "Unlike", unlike_post_path(p), method: :put %>   
+            <% else %>         
+                <%= link_to "Like", like_post_path(p), method: :put %>
+            <% end %>
+
+            <% if (current_user.voted_down_on? p) %>
+                <%= link_to "Undislike", undislike_post_path(p), method: :put%>
+            <% else %>
+                <%= link_to "Dislike", dislike_post_path(p), method: :put%>
+            <% end %>
+        <% else %>
+            <%= link_to "Like", new_user_session_path, method: :get %>
+            <%= link_to "Dislike", new_user_session_path, method: :get %>
+        <% end %>
 	<table>
 	<% end %>
 <% end %></p>
@@ -37,6 +56,7 @@
 		<tr>
 		<td><b>Content</b>:  <%= p.content %> </td>
 		<td><b>Likes</b>:  <%= p.score %> </td>
+		<td><b>User</b>:  <%= p.user.username %> </td>
 		<% if (current_user) %>
             <% if (current_user.voted_up_on? p) %>
                 <%= link_to "Unlike", unlike_post_path(p), method: :put %>   
@@ -44,7 +64,7 @@
                 <%= link_to "Like", like_post_path(p), method: :put %>
             <% end %>
 
-            <% if (current_user.voted_down_on? s) %>
+            <% if (current_user.voted_down_on? p) %>
                 <%= link_to "Undislike", undislike_post_path(p), method: :put%>
             <% else %>
                 <%= link_to "Dislike", dislike_post_path(p), method: :put%>

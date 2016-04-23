@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: 'stories#index'
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations' }
   match '/users/:id', :to => 'users#show',    :as => :user,         :via => :get
   resources :stories do
       member do

@@ -2,8 +2,6 @@
 
 <p>
 
-
-
 <% if (current_user) %>
 	<!-- <%= link_to "Create new Post", new_post_path(story_id: @story.id) %> -->
 	<%= button_to "Create new Post", new_post_path(), :class => "button medium", :method => :get, params:{story_id: @story.id} %>
@@ -28,6 +26,7 @@
 	<% if p.success == false %>
 	<table>
 		<tr>
+		<%= image_tag p.user.photo.url(:thumb) %>
 		<td><b>Content</b>:  <%= p.content %> </td>
 		<td><b>Likes</b>:  <%= p.score %> </td>
 		<td><b>User</b>:  <%= p.user.username %> </td>
