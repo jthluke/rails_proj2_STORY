@@ -4,14 +4,14 @@
 <% if (@user == current_user) %>
     <p> Email: <%= @user.email %></p>
 <% end %>
-<%= image_tag @user.photo.url, size: "150x150" %>
+<%= image_tag @user.photo.url, size: "150x150", :style => "float: left"  %>
 <p> Member since <%= @user.created_at.strftime("%b %d, %Y")%></p>
 <p> <%= @user.points%> Points</p>
 </center>
 
 
 <% stories = @user.stories.sort_by {|story| story.score}.reverse! %>
-
+<br> <br>
 <% if (@user == current_user) %>
     <h1> My Stories </h1>
 <% else %>

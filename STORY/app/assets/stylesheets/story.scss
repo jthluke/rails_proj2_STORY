@@ -1,8 +1,14 @@
 // Place all the styles related to the Story controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.title {
+	font-family: Garamond, Baskerville, serif;
+	color: white;
+	background-image: url("http://becomingthecallaways.com/wp-content/uploads/2013/10/water-color-header-copy-3.png")
+}
+
 .body {
-	font-family: Papyrus, fantasy;
+	font-family: fantasy;
 	font-size: 14px;
 	margin-top: 20px;
   margin-left: 50px;
@@ -10,7 +16,7 @@
 }
 
 h1 {
-	font-family: Papyrus, fantasy;
+	font-family: fantasy;
 	font-size: 24px;
 	font-style: normal;
 	font-variant: normal;
@@ -19,7 +25,7 @@ h1 {
 }
 
 blockquote {
-	font-family: Papyrus, fantasy;
+	font-family: fantasy;
 	font-size: 21px;
 	font-style: normal;
 	font-variant: normal;
@@ -28,7 +34,7 @@ blockquote {
 }
 
 h3 {
-	font-family: Papyrus, fantasy;
+	font-family:  fantasy;
 	font-size: 14px;
 	font-style: normal;
 	font-variant: normal;
@@ -36,7 +42,7 @@ h3 {
 	line-height: 15.4px;
 }
 p {
-	font-family: Papyrus, fantasy;
+	font-family:  fantasy;
 	font-size: 14px;
 	font-style: normal;
 	font-variant: normal;
