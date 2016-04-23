@@ -55,6 +55,11 @@ $(document).ready(function(){
 <br>
 
 <a href="#posts" data-toggle="collapse">Succeeded Posts</a>
+<script>
+$(document).ready(function(){
+    $(".collapse").collapse('show');
+});
+</script>
 <div class="posts"><div id="posts" class = "collapse">
 	<% posts_sorted_by_date = @story.posts.sort_by {|post| post.updated_at} %>
 	<% if (posts_sorted_by_date.size > 0) %>
