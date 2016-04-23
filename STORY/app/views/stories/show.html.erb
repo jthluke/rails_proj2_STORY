@@ -56,7 +56,7 @@ $(document).ready(function(){
 
 <a href="#posts" data-toggle="collapse">Succeeded Posts</a>
 <div class="posts"><div id="posts" class = "collapse">
-	<% posts_sorted_by_date = @story.posts.sort_by {|post| post.updated_at}.reverse! %>
+	<% posts_sorted_by_date = @story.posts.sort_by {|post| post.updated_at} %>
 	<% if (posts_sorted_by_date.size > 0) %>
 		<% posts_sorted_by_date.each do |p| %>
 			<% if p.success %>
