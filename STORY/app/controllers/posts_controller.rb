@@ -55,7 +55,7 @@ class PostsController < ApplicationController
 	      @post.unliked_by current_user
           redirect_to story_url(id:@post.story_id)
 	  end
-	    
+
 	  def undownvote
           @post = Post.find(params[:id])
 	    @post.undisliked_by current_user
