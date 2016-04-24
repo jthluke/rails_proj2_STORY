@@ -1,3 +1,9 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
 
 <%= stylesheet_link_tag "story" %>
 <div class="title">
@@ -5,13 +11,6 @@
 <center><h1>Stories</h1></center>
 <br>
 </div>
-
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-</head>
 
 <div class="body">
     <p>
@@ -34,7 +33,7 @@
                     style: "background-color: green",
                     content : '<table style="word-wrap: break-word; max-width: 300px">'+
                                     '<tr><td><center><%= image_tag s.user.photo.url, size: "50x50",:style => "border-radius: 1em;" %><br><h4><%=link_to s.user.username, s.user %> | <%= s.user.points%></h4></center></td>'+
-                                    '<td style="word-wrap: break-word; max-width: 300px;"><p>Story beginning post 1 post 2 post 3...asdfasdfsadfasdfsaasdfasdfasdfasdfasdfasdfasdfaasdfsdfasdfasdfsadfsdfasdf</p></td></tr>'+
+                                    '<td style="word-wrap: break-word; max-width: 300px;"><p><%=s.beginning%> <%=s.posts[0].content if s.posts[0] %> <%=s.posts[1].content if s.posts[1]%> <%=s.posts[2].content if s.posts[2]%></p></td></tr>'+
                                 '</table>'
                 });
             });

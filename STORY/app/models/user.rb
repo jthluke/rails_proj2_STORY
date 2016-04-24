@@ -10,4 +10,5 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
   validates_presence_of :username
   validates_uniqueness_of :username
+  validates :username, length: {maximum: 15}
 end

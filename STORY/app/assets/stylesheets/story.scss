@@ -66,7 +66,14 @@ p {
     border-left: 1px dotted #DDF;
 }
 
-.container {height: 100%; width:100%; font-size: 0;}
+.whatsnext {
+	margin-left: 50px;
+	margin-right: 50px;
+}
+
+
+
+.container {height: 100%; width:100%; font-size: 0; float: left;}
 .votes, .user, .contentbody {display: inline-block; *display: inline; zoom: 1; vertical-align: top; font-size: 12px;}
 .votes {width: 4%; }
 .user {width: 7%; position: relative; top: 50%; transform: translateY(20%); }
