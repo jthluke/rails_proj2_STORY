@@ -62,8 +62,9 @@ $(document).ready(function(){
 
 				<div class="container">
 				<br>
+				<div class='votes'>
 					<% if (current_user) %>
-						<div class='votes'>
+
 						<% if (current_user.voted_up_on? p) %>
 							<!-- <%= button_to "Unlike", unlike_post_path(p), :class => "button small", :method => :put %> -->
 							<%= link_to image_tag("unupvote.png", size: "40x40", style: "padding-top: 3px; padding-left: 3px;"), unlike_post_path(p), :method => :put %>
@@ -83,8 +84,10 @@ $(document).ready(function(){
 
 						<% end %>
 					<% else %>
-						<%= link_to "Like", new_user_session_path, method: :get %>
-						<%= link_to "Dislike", new_user_session_path, method: :get %>
+						<%= link_to image_tag("upvote.png", size: "40x40", style: "padding-top: 3px; padding-left: 3px;"), new_user_session_path, method: :get %>
+						<div class='likes'><%= p.score %></div>
+						<%= link_to image_tag("downvote.png", size: "40x40", style: "padding-top: 3px; padding-left: 3px;"), new_user_session_path, method: :get %>
+
 					<% end %>
 					</div>
 					<div class='user'>
@@ -113,8 +116,9 @@ $(document).ready(function(){
 	    <% posts_sorted_by_votes.each do |p| %>
 			<div class="container">
 			<br>
+			<div class='votes'>
 				<% if (current_user) %>
-					<div class='votes'>
+
 					<% if (current_user.voted_up_on? p) %>
 						<!-- <%= button_to "Unlike", unlike_post_path(p), :class => "button small", :method => :put %> -->
 						<%= link_to image_tag("unupvote.png", size: "40x40", style: "padding-top: 3px; padding-left: 3px;"), unlike_post_path(p), :method => :put %>
@@ -134,8 +138,9 @@ $(document).ready(function(){
 
 					<% end %>
 				<% else %>
-					<%= link_to "Like", new_user_session_path, method: :get %>
-					<%= link_to "Dislike", new_user_session_path, method: :get %>
+					<%= link_to image_tag("upvote.png", size: "40x40", style: "padding-top: 3px; padding-left: 3px;"), new_user_session_path, method: :get %>
+					<div class='likes'><%= p.score %></div>
+					<%= link_to image_tag("downvote.png", size: "40x40", style: "padding-top: 3px; padding-left: 3px;"), new_user_session_path, method: :get %>
 				<% end %>
 				</div>
 				<div class='user'>

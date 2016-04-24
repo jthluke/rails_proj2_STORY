@@ -18,6 +18,7 @@
     <% end %>
     </p>
 
+
     <% @stories.sort_by {|story| story.score}.reverse!.each do |s| %>
         <script>
             $(document).ready(function(){
@@ -43,8 +44,9 @@
 
 				<div class="container">
 				<br>
+					<div class='votes'>
 					<% if (current_user) %>
-						<div class='votes'>
+
 						<% if (current_user.voted_up_on? s) %>
 							<%= link_to image_tag("unupvote.png", size: "40x40", style: "padding-top: 3px; padding-left: 3px;"), unlike_story_path(s), :method => :put %>
 						<% else %>
@@ -60,14 +62,16 @@
 
 						<% end %>
 					<% else %>
-						<%= link_to "Like", new_user_session_path, method: :get %>
-						<%= link_to "Dislike", new_user_session_path, method: :get %>
+						<%= link_to image_tag("upvote.png", size: "40x40", style: "padding-top: 3px; padding-left: 3px;"), new_user_session_path, method: :get %>
+						<div class='likes'><%= s.score %></div>
+						<%= link_to image_tag("downvote.png", size: "40x40", style: "padding-top: 3px; padding-left: 3px;"), new_user_session_path, method: :get %>
+
 					<% end %>
 					</div>
 					<div class='user'>
 						<%= image_tag s.user.photo.url, size: "50x50", :style => "border-radius: 1em;" %>
 						<div>
-							<%= link_to s.user.username, s.user %>
+							<%= s.user.username %>
 							|
 							<%= s.user.points %>
 						</div>
