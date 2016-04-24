@@ -22,11 +22,7 @@ $(document).ready(function(){
     $('[data-toggle="popover"]').popover({
         placement : 'top',
         html : true,
-<<<<<<< HEAD
         content : '<center><%= image_tag @story.user.photo.url, size: "50x50", :style => "border-radius: 1em;" %></center><h4 class="media-heading"><%=link_to @story.user.username, @story.user%> | <%= @story.user.points%></h4>'
-=======
-        content : '<center><%= image_tag @story.user.photo.url, size: "50x50", :style => "border-radius: 1em;" %></center><h4 class="media-heading"><%=@story.user.username%> | <%= @story.user.points%></h4>'
->>>>>>> 4a8e290843eadc2ca2cee410b0ebba5069589e66
     });
 });
 </script>
