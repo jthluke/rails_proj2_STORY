@@ -6,7 +6,8 @@
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.file_field :photo %>
+    <%= f.label "Enter a URL for a profile picture" %><br />
+    <%= f.text_field :url %>
     <%= f.label :username%><br />
     <%= f.text_field :username, autofocus: true %>
     <%= f.hidden_field :points, value: 0 %>

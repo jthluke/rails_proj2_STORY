@@ -22,7 +22,7 @@ $(document).ready(function(){
     $('[data-toggle="popover"]').popover({
         placement : 'top',
         html : true,
-        content : '<center><%= image_tag @story.user.photo.url, size: "60x60", :style => "border-radius: 1em;" %></center><center><div class="truncate-username"><%=@story.user.username%></div><div class="truncate-username">&nbsp|&nbsp<%= @story.user.points%></div></center>'
+        content : '<center><%= image_tag @story.user.url, size: "60x60", :style => "border-radius: 1em;" %></center><center><div class="truncate-username"><%=@story.user.username%></div><div class="truncate-username">&nbsp|&nbsp<%= @story.user.points%></div></center>'
     });
 });
 </script>
@@ -48,7 +48,7 @@ $(document).ready(function(){
 				    $('[data-toggle="popover<%=p.id%>"]').popover({
 				        placement : 'top',
 				        html : true,
-				        content : '<center><%= image_tag p.user.photo.url, size: "60x60", :style => "border-radius: 1em;" %></center><center><div class="truncate-username"><%=p.user.username%></div><div class="truncate-username">&nbsp|&nbsp<%= p.user.points%></div></center>'
+				        content : '<center><%= image_tag p.user.url, size: "60x60", :style => "border-radius: 1em;" %></center><center><div class="truncate-username"><%=p.user.username%></div><div class="truncate-username">&nbsp|&nbsp<%= p.user.points%></div></center>'
 				    });
 				});
 			</script>
@@ -99,7 +99,7 @@ $(document).ready(function(){
 						<% end %>
 					</div>
 					<div class='user'>
-						<center><%= image_tag p.user.photo.url, size: "60x60", :style => "border-radius: 1em;" %></center>
+						<center><%= image_tag p.user.url, size: "60x60", :style => "border-radius: 1em;" %></center>
 						<div>
 							<center><div class='truncate-username'><%= link_to p.user.username, p.user%></div>
 							<div class="truncate-username">&nbsp|&nbsp<%= p.user.points %></div></center>
@@ -151,7 +151,7 @@ $(document).ready(function(){
 				<% end %>
 				</div>
 				<div class='user'>
-					<center><%= image_tag p.user.photo.url, size: "60x60", :style => "border-radius: 1em;" %></center>
+					<center><%= image_tag p.user.url, size: "60x60", :style => "border-radius: 1em;" %></center>
 					<div>
 						<center><div class='truncate-username'><%= link_to p.user.username, p.user%></div>
 						<div class="truncate-username">&nbsp|&nbsp<%= p.user.points %></div></center>

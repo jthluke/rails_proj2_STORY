@@ -67,7 +67,7 @@
 					<% end %>
 					</div>
 					<div class='user'>
-						<center><%= image_tag s.user.photo.url, size: "60x60", :style => "border-radius: 1em;" %></center>
+						<center><%= image_tag s.user.url, size: "60x60", :style => "border-radius: 1em;" %></center>
 						<div>
 							<center><div class="truncate-username" ><%= link_to s.user.username, s.user %></div>
 							<div class="truncate-username" >&nbsp|&nbsp<%= s.user.points %></div></center>

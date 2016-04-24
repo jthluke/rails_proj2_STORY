@@ -5,7 +5,7 @@
 <% if (@user == current_user) %>
     <p> Email: <%= @user.email %></p>
 <% end %>
-<%= image_tag @user.photo.url, size: "150x150", :style => "border-radius: 1em;" %>
+<%= image_tag @user.url, size: "150x150", :style => "border-radius: 1em;" %>
 <p> Member since <%= @user.created_at.strftime("%b %d, %Y")%></p>
 <p> <%= @user.points%> Points</p>
 </center>
