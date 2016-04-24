@@ -1,0 +1,63 @@
+// Place all the styles related to the Story controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.body {
+	font-family: Papyrus, fantasy;
+	font-size: 14px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+h1 {
+	font-family: Papyrus, fantasy;
+	font-size: 24px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 26.4px;
+}
+
+blockquote {
+	font-family: Papyrus, fantasy;
+	font-size: 21px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 30px;
+}
+
+h3 {
+	font-family: Papyrus, fantasy;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 15.4px;
+}
+p {
+	font-family: Papyrus, fantasy;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+}
+.posts {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.story {
+    margin-left: 50px;
+}
+
+.candidates {
+    margin-top: 10px;
+    border-left: 1px dotted #DDF;
+}
+
+.content {
+    margin-top: 10px;
+    margin-left: 15px;
+    border-left: 1px dotted #DDF;
+}
