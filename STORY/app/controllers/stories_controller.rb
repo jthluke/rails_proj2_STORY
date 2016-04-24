@@ -26,24 +26,40 @@ class StoriesController < ApplicationController
 	  def upvote
 	    @story = Story.find(params[:id])
 	    @story.liked_by current_user
+			user = User.find(@story.user_id)
+			user.points += 1
+			user.save
+			current_user.points += 1
+			current_user.save
 	    redirect_to stories_path
 	  end
 
 	  def downvote
 	    @story = Story.find(params[:id])
 	    @story.disliked_by current_user
+			user = User.find(@story.user_id)
+      user.points -= 1
+			user.save
 	    redirect_to stories_path
 	  end
-	  
+
 	  def unupvote
 	    @story = Story.find(params[:id])
 	    @story.unliked_by current_user
+			user = User.find(@story.user_id)
+			user.points -= 1
+			user.save
+			current_user.points -= 1
+			current_user.save
 	    redirect_to stories_path
 	  end
-	    
+
 	  def undownvote
 	    @story = Story.find(params[:id])
 	    @story.undisliked_by current_user
+			user = User.find(@story.user_id)
+			user.points += 1
+			user.save
 	    redirect_to stories_path
 	  end
 
