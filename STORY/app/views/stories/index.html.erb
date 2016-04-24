@@ -38,26 +38,44 @@
                 });
             });
         </script>
-        <a href="<%= story_path(s.id) %>" data-toggle="popover<%=s.id%>" data-trigger="hover" title="">
-            <h1 style="display: inline-block"><%= s.beginning %><%='...'%></h1>
-        </a>
-        <h3>Likes: <%= s.score %></h3>
-        <% if (current_user) %>
-            <% if (current_user.voted_up_on? s) %>
-                <%= link_to "Unlike", unlike_story_path(s), method: :put %>
-            <% else %>
-                <%= link_to "Like", like_story_path(s), method: :put %>
-            <% end %>
+				<div class="container">
+				<br>
+					<% if (current_user) %>
+						<div class='votes'>
+						<% if (current_user.voted_up_on? s) %>
+							<%= link_to image_tag("unupvote.png", size: "40x40", style: "padding-top: 3px; padding-left: 3px;"), unlike_story_path(s), :method => :put %>
+						<% else %>
+							<%= link_to image_tag("upvote.png", size: "40x40", style: "padding-top: 3px; padding-left: 3px;"), like_story_path(s), :method => :put %>
 
-            <% if (current_user.voted_down_on? s) %>
-                <%= link_to "Undislike", undislike_story_path(s), method: :put%>
-            <% else %>
-                <%= link_to "Dislike", dislike_story_path(s), method: :put%>
-            <% end %>
-        <% else %>
-            <%= link_to "Like", new_user_session_path, method: :get %>
-            <%= link_to "Dislike", new_user_session_path, method: :get %>
-        <% end %>
-        <br>
+						<% end %>
+						<div class='likes'><%= s.score %></div>
+						<% if (current_user.voted_down_on? s) %>
+							<%= link_to image_tag("undownvote.png", size: "40x40", style: "padding-top: 3px; padding-left: 3px;"), undislike_story_path(s), :method => :put %>
+
+						<% else %>
+							<%= link_to image_tag("downvote.png", size: "40x40", style: "padding-top: 3px; padding-left: 3px;"), dislike_story_path(s), :method => :put %>
+
+						<% end %>
+					<% else %>
+						<%= link_to "Like", new_user_session_path, method: :get %>
+						<%= link_to "Dislike", new_user_session_path, method: :get %>
+					<% end %>
+					</div>
+					<div class='user'>
+						<%= image_tag s.user.photo.url, size: "50x50", :style => "border-radius: 1em;" %>
+						<div>
+							<%= s.user.username %>
+							|
+							<%= s.user.points %>
+						</div>
+					</div>
+					<div class='contentbody'>
+						<a href="<%= story_path(s.id) %>" data-toggle="popover<%=s.id%>" data-trigger="hover" title="">
+		            <blockquote style="display: inline-block"><%= s.beginning %><%='...'%></blockquote>
+		        </a>
+					</div>
+				</div>
+
+
     <% end %>
 </div>
