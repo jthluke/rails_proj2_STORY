@@ -9,6 +9,7 @@
     <%= f.file_field :photo %>
     <%= f.label :username%><br />
     <%= f.text_field :username, autofocus: true %>
+    <%= f.hidden_field :points, value: 0 %>
   </div>
 
   <div class="field">
