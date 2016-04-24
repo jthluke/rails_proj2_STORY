@@ -32,6 +32,19 @@ Post.create content: 'He ordered a burger with fries.', user_id: 2, story_id: 2,
 Post.create content: 'We were at a romantic beachside cafe, when suddenly', user_id: 4, story_id: 2, success: false, created_at: "2016-04-20 23:44:00", updated_at: "2016-04-20 23:44:00"
 Post.create content: '"r u single?", he asked.', user_id: 1, story_id: 2, success: false, created_at: "2016-04-20 23:45:00", updated_at: "2016-04-20 23:45:00"
 
+Post.create content: '"HERE FIDO, SOME FOOD FOR THOUGHT!"', user_id: 1, story_id: 3, success: true, created_at: "2016-04-20 23:46:00", updated_at: "2016-04-20 23:46:00"
+Post.create content: 'Fido got mad.  He went to beast mode and ', user_id:4, story_id: 3, success: true, created_at: "2016-04-20 23:47:00", updated_at: "2016-04-20 23:47:00"
+Post.create content: 'displayed his dominance', user_id: 4, story_id: 3, success: false, created_at: "2016-04-20 23:48:00", updated_at: "2016-04-20 23:48:00"
+Post.create content: 'took Bobby for a walk.', user_id: 2, story_id: 3, success: false, created_at: "2016-04-20 23:49:00", updated_at: "2016-04-20 23:49:00"
+Post.create content: 'marked the homework as territory', user_id: 3, story_id: 3, success: false, created_at: "2016-04-20 23:50:00", updated_at: "2016-04-20 23:50:00"
+
+Post.create content: 'good for your health, as recommended by 9/10 doctors.', user_id: 2, story_id: 4, success: true, created_at: "2016-04-20 23:51:00", updated_at: "2016-04-20 23:51:00"
+Post.create content: 'Gotta beat the crowd to ', user_id:1, story_id: 4, success: true, created_at: "2016-04-20 23:52:00", updated_at: "2016-04-20 23:52:00"
+Post.create content: 'the Justin Bieber concert.', user_id: 3, story_id: 4, success: false, created_at: "2016-04-20 23:53:00", updated_at: "2016-04-20 23:53:00"
+Post.create content: 'FREE Chipotle!', user_id: 1, story_id: 4, success: false, created_at: "2016-04-20 23:54:00", updated_at: "2016-04-20 23:54:00"
+Post.create content: 'asdfasdf', user_id: 2, story_id: 4, success: false, created_at: "2016-04-20 23:55:00", updated_at: "2016-04-20 23:55:00"
+
 # Upvote some posts
 Post.find(1).liked_by User.find(1), :vote_weight => 10
+Story.find(1).liked_by User.find(2), :vote_weight => 10
 
