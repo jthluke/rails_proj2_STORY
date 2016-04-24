@@ -22,7 +22,7 @@ $(document).ready(function(){
     $('[data-toggle="popover"]').popover({
         placement : 'top',
         html : true,
-        content : '<center><%= image_tag @story.user.photo.url, size: "50x50", :style => "border-radius: 1em;" %></center><h4 class="media-heading"><%=link_to @story.user.username, @story.user%> | <%= @story.user.points%></h4>'
+        content : '<center><%= image_tag @story.user.photo.url, size: "50x50", :style => "border-radius: 1em;" %></center><h4 class="media-heading"><%=@story.user.username%> | <%= @story.user.points%></h4>'
     });
 });
 </script>
@@ -40,7 +40,7 @@ $(document).ready(function(){
 				    $('[data-toggle="popover<%=p.id%>"]').popover({
 				        placement : 'top',
 				        html : true,
-				        content : '<center><%= image_tag p.user.photo.url, size: "50x50", :style => "border-radius: 1em;" %></center><h4 class="media-heading"><%=link_to p.user.username, p.user%> | <%= p.user.points%></h4>'
+				        content : '<center><%= image_tag p.user.photo.url, size: "50x50", :style => "border-radius: 1em;" %></center><h4 class="media-heading"><%=p.user.username%> | <%= p.user.points%></h4>'
 				    });
 				});
 			</script>
