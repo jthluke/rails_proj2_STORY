@@ -97,7 +97,7 @@ $(document).ready(function(){
 					<div class='user'>
 						<%= image_tag p.user.photo.url, size: "50x50", :style => "border-radius: 1em;" %>
 						<div>
-							<%= p.user.username %>
+							<%= link_to p.user.username, p.user %>
 							|
 							<%= p.user.points %>
 						</div>
@@ -148,7 +148,7 @@ $(document).ready(function(){
 				<div class='user'>
 					<%= image_tag p.user.photo.url, size: "50x50", :style => "border-radius: 1em;" %>
 					<div>
-						<%= p.user.username %>
+						<%= link_to p.user.username, p.user%>
 						|
 						<%= p.user.points %>
 					</div>
