@@ -54,44 +54,45 @@ $(document).ready(function(){
 
 <br>
 
-<a href="#posts" data-toggle="collapse">Succeeded Posts</a>
 <script>
 $(document).ready(function(){
     $(".collapse").collapse('show');
 });
 </script>
+
+<a href="#posts" data-toggle="collapse">Succeeded Posts</a>
+
 <div class="posts"><div id="posts" class = "collapse">
-	<% posts_sorted_by_date = @story.posts.sort_by {|post| post.updated_at} %>
+	<% posts_sorted_by_date = @story.posts.where(:success => true).sort_by {|post| post.updated_at} %>
 	<% if (posts_sorted_by_date.size > 0) %>
 		<% posts_sorted_by_date.each do |p| %>
-			<% if p.success %>
-				<!-- <div class="midcol upvotes"> -->
 				<div class="container">
 				<br>
 					<% if (current_user) %>
 						<div class='votes'>
 						<% if (current_user.voted_up_on? p) %>
-							<%= button_to "Unlike", unlike_post_path(p), :class => "button small", :method => :put %>
+							<!-- <%= button_to "Unlike", unlike_post_path(p), :class => "button small", :method => :put %> -->
+							<%= link_to image_tag("unupvote.png", size: "40x40", style: "padding-top: 3px; padding-left: 3px;"), unlike_post_path(p), :method => :put %>
 						<% else %>
-							<%= button_to "Like", like_post_path(p), :class => "button medium", :method => :put %>
+							<!-- <%= button_to "Like", like_post_path(p), :class => "button medium", :method => :put %> -->
+							<%= link_to image_tag("upvote.png", size: "40x40", style: "padding-top: 3px; padding-left: 3px;"), like_post_path(p), :method => :put %>
+
 						<% end %>
 						<div class='likes'><%= p.score %></div>
 						<% if (current_user.voted_down_on? p) %>
-							<%= button_to "Undislike", undislike_post_path(p), :class => "button small", :method => :put %>
+							<!-- <%= button_to "Undislike", undislike_post_path(p), :class => "button small", :method => :put %> -->
+							<%= link_to image_tag("undownvote.png", size: "40x40", style: "padding-top: 3px; padding-left: 3px;"), undislike_post_path(p), :method => :put %>
+
 						<% else %>
-							<%= button_to "Dislike", dislike_post_path(p), :class => "button small", :method => :put %>
+							<!-- <%= button_to "Dislike", dislike_post_path(p), :class => "button small", :method => :put %> -->
+							<%= link_to image_tag("downvote.png", size: "40x40", style: "padding-top: 3px; padding-left: 3px;"), dislike_post_path(p), :method => :put %>
+
 						<% end %>
 					<% else %>
 						<%= link_to "Like", new_user_session_path, method: :get %>
 						<%= link_to "Dislike", new_user_session_path, method: :get %>
 					<% end %>
 					</div>
-					<!-- <div class="arrow up login-required access-required" data-event-action="upvote" role="button" aria-label="upvote" tabindex="0">
-					</div>
-					<div class="score likes">•</div>
-
-					<div class="arrow down login-required access-required" data-event-action="downvote" role="button" aria-label="downvote" tabindex="0"></div>
-				</div> -->
 					<div class='user'>
 						<%= image_tag p.user.photo.url, size: "50x50" %>
 						<div>
@@ -105,45 +106,59 @@ $(document).ready(function(){
 					</div>
 				</div>
 
-				<% end %>
-			<% end %></p>
+			<% end %>
 		<% else %>
 			<br> There are no new posts! <br>
 		<% end %>
 </div></div>
 
 <br>
-<p><b>What's next?</b>
-	<% posts_sorted_by_votes = @story.posts.sort_by {|post| post.score}.reverse! %>
+<b>What's next?</b>
+	<% posts_sorted_by_votes = @story.posts.where(:success => false).sort_by {|post| post.score}.reverse! %>
     <% if (posts_sorted_by_votes.size > 0) %>
 	    <% posts_sorted_by_votes.each do |p| %>
-	        <% if p.success == false %>
-	        <table>
-		        <tr>
-			        <blockquote><%= p.content %> </blockquote>
-			        <b>Likes</b>:  <%= p.score %> </td>
-			        <b>User</b>:  <%= p.user.username %>
-			        <% if (current_user) %>
-	                    <% if (current_user.voted_up_on? p) %>
-	                        <%= link_to "Unlike", unlike_post_path(p), method: :put %>
-	                    <% else %>
-	                        <%= link_to "Like", like_post_path(p), method: :put %>
-	                    <% end %>
+			<div class="container">
+			<br>
+				<% if (current_user) %>
+					<div class='votes'>
+					<% if (current_user.voted_up_on? p) %>
+						<!-- <%= button_to "Unlike", unlike_post_path(p), :class => "button small", :method => :put %> -->
+						<%= link_to image_tag("unupvote.png", size: "40x40", style: "padding-top: 3px; padding-left: 3px;"), unlike_post_path(p), :method => :put %>
+					<% else %>
+						<!-- <%= button_to "Like", like_post_path(p), :class => "button medium", :method => :put %> -->
+						<%= link_to image_tag("upvote.png", size: "40x40", style: "padding-top: 3px; padding-left: 3px;"), like_post_path(p), :method => :put %>
 
-	                    <% if (current_user.voted_down_on? p) %>
-	                        <%= link_to "Undislike", undislike_post_path(p), method: :put%>
-	                    <% else %>
-	                        <%= link_to "Dislike", dislike_post_path(p), method: :put%>
-	                    <% end %>
-	                <% else %>
-	                    <%= link_to "Like", new_user_session_path, method: :get %>
-	                    <%= link_to "Dislike", new_user_session_path, method: :get %>
-	                <% end %>
-            	</tr>
-	        </table>
-	        <% end %>
-        <% end %></p>
+					<% end %>
+					<div class='likes'><%= p.score %></div>
+					<% if (current_user.voted_down_on? p) %>
+						<!-- <%= button_to "Undislike", undislike_post_path(p), :class => "button small", :method => :put %> -->
+						<%= link_to image_tag("undownvote.png", size: "40x40", style: "padding-top: 3px; padding-left: 3px;"), undislike_post_path(p), :method => :put %>
+
+					<% else %>
+						<!-- <%= button_to "Dislike", dislike_post_path(p), :class => "button small", :method => :put %> -->
+						<%= link_to image_tag("downvote.png", size: "40x40", style: "padding-top: 3px; padding-left: 3px;"), dislike_post_path(p), :method => :put %>
+
+					<% end %>
+				<% else %>
+					<%= link_to "Like", new_user_session_path, method: :get %>
+					<%= link_to "Dislike", new_user_session_path, method: :get %>
+				<% end %>
+				</div>
+				<div class='user'>
+					<%= image_tag p.user.photo.url, size: "50x50" %>
+					<div>
+						<%= p.user.username %>
+						|
+						<%= p.user.points %>
+					</div>
+				</div>
+				<div class='contentbody'>
+					<blockquote><%= p.content %></blockquote>
+				</div>
+			</div>
+
+        <% end %>
     <% else %>
-        <br>There are no posts yet. <%= link_to "Create one now!", new_post_path(story_id=@story.id) %>
+        <br>There are no posts yet. <%= link_to "Create one now!", new_post_path(:story_id => @story.id) %>
     <% end %>
 </div>

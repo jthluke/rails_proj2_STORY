@@ -1,16 +1,21 @@
 // Place all the styles related to the Story controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.title {
+	font-family: Garamond, Baskerville, serif;
+	color: white;
+	background-image: url("http://becomingthecallaways.com/wp-content/uploads/2013/10/water-color-header-copy-3.png")
+}
+
 .body {
-	font-family: Papyrus, fantasy;
-	font-size: 20px;
+	font-family: Helvetica;
 	margin-top: 20px;
   margin-left: 50px;
   margin-right: 50px;
 }
 
 h1 {
-	font-family: Papyrus, fantasy;
+	font-family: Helvetica;
 	font-size: 24px;
 	font-style: normal;
 	font-variant: normal;
@@ -19,7 +24,7 @@ h1 {
 }
 
 blockquote {
-	font-family: Papyrus, fantasy;
+	font-family: Helvetica;
 	font-size: 21px;
 	font-style: normal;
 	font-variant: normal;
@@ -28,7 +33,7 @@ blockquote {
 }
 
 h3 {
-	font-family: Papyrus, fantasy;
+	font-family:  Helvetica;
 	font-size: 14px;
 	font-style: normal;
 	font-variant: normal;
@@ -36,7 +41,7 @@ h3 {
 	line-height: 15.4px;
 }
 p {
-	font-family: Papyrus, fantasy;
+	font-family:  Helvetica;
 	font-size: 14px;
 	font-style: normal;
 	font-variant: normal;
@@ -65,7 +70,7 @@ p {
 
 .container {height: 100%; width:100%; font-size: 0;}
 .votes, .user, .contentbody {display: inline-block; *display: inline; zoom: 1; vertical-align: top; font-size: 12px;}
-.votes {width: 8%; }
-.user {width: 10%; position: relative; top: 50%; transform: translateY(20%); }
+.votes {width: 5%; }
+.user {width: 7%; position: relative; top: 50%; transform: translateY(20%); }
 .contentbody {width: 50%; }
 .likes {text-align: center}
