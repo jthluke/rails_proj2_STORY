@@ -22,7 +22,7 @@ $(document).ready(function(){
     $('[data-toggle="popover"]').popover({
         placement : 'top',
         html : true,
-        content : '<%= image_tag @story.user.photo.url, size: "50x50" %><h4 class="media-heading"><%=link_to @story.user.username, @story.user%> | <%= @story.user.points%></h4>'
+        content : '<center><%= image_tag @story.user.photo.url, size: "50x50", :style => "border-radius: 1em;" %></center><h4 class="media-heading"><%=link_to @story.user.username, @story.user%> | <%= @story.user.points%></h4>'
     });
 });
 </script>
@@ -40,7 +40,7 @@ $(document).ready(function(){
 				    $('[data-toggle="popover<%=p.id%>"]').popover({
 				        placement : 'top',
 				        html : true,
-				        content : '<%= image_tag p.user.photo.url, size: "50x50" %><h4 class="media-heading"><%=link_to p.user.username, p.user%> | <%= p.user.points%></h4>'
+				        content : '<center><%= image_tag p.user.photo.url, size: "50x50", :style => "border-radius: 1em;" %></center><h4 class="media-heading"><%=link_to p.user.username, p.user%> | <%= p.user.points%></h4>'
 				    });
 				});
 			</script>
@@ -68,6 +68,7 @@ $(document).ready(function(){
 		<% posts_sorted_by_date.each do |p| %>
 				<div class="container">
 				<br>
+
 					<% if (current_user) %>
 						<div class='votes'>
 						<% if (current_user.voted_up_on? p) %>
