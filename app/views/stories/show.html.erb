@@ -11,9 +11,9 @@
 
 <% if (current_user) %>
 	<!-- <%= link_to "New Post", new_post_path(story_id: @story.id) %> -->
-	<%= button_to "New Post", new_post_path(), :class => "button medium", :method => :get, params:{story_id: @story.id}, :style => "float: right" %>
+	<%= button_to "NEW POST", new_post_path(), :class => "button_custom", :method => :get, params:{story_id: @story.id}, :style => "float: right" %>
 <% else %>
-    <%= button_to "New Post", new_user_session_path, :class => "button medium", :method => :get, :style => "float: right" %>
+    <%= button_to "NEW POST", new_user_session_path, :class => "button_custom", :method => :get, :style => "float: right" %>
 <% end %>
 
 
@@ -35,7 +35,7 @@ $(document).ready(function(){
 	});
 </script>
 
-<div class="contentbody"><b><a href="#story" data-toggle="collapse" style="color: black">The Story</a></b></div>
+<div class="contentbody"><h3><b><a href="#story" data-toggle="collapse" style="color: black">The Story</a></b></h3></div>
 <div class="story"><div id="story" class = "collapse">
     <a href="<%=user_path(@story.user.id)%>" data-toggle="popover" data-trigger="hover" title="">
         <%= @story.beginning + ' ' %>
@@ -63,7 +63,7 @@ $(document).ready(function(){
 
 
 
-<div class="contentbody"><b><a href="#posts" data-toggle="collapse" style="color: black">Succeeded Posts</a></b></div>
+<div class="contentbody"><h3><b><a href="#posts" data-toggle="collapse" style="color: black">Succeeded Posts</a></b></h3></div>
 <div class="posts"><div id="posts" class = "collapse">
 	<% posts_sorted_by_date = @story.posts.where(:success => true).sort_by {|post| post.updated_at} %>
 	<% if (posts_sorted_by_date.size > 0) %>
@@ -117,7 +117,7 @@ $(document).ready(function(){
 </div></div>
 
 <br>
-<div class="contentbody" style="padding-top: 10px"><b>What's next?</b></div>
+<div class="contentbody" style="padding-top: 10px"><h3><b>What's next?</b></h3></div>
 	<% posts_sorted_by_votes = @story.posts.where(:success => false).sort_by {|post| post.score}.reverse! %>
     <% if (posts_sorted_by_votes.size > 0) %>
 	    <% posts_sorted_by_votes.each do |p| %>
