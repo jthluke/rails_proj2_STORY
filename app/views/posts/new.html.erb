@@ -1,9 +1,43 @@
 <%= stylesheet_link_tag "story" %>
 <div class="body">
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-
 <h1> Create New Post </h1>
+
+<div class="body">
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover({
+        placement : 'top',
+        html : true,
+        content : '<center><%= image_tag @story.user.url, size: "60x60", :style => "border-radius: 1em;" %></center><center><div class="truncate-username"><%=@story.user.username%></div><div class="truncate-username">&nbsp|&nbsp<%= @story.user.points%></div></center>'
+    });
+});
+</script>
+
+<div class="contentbody"><h3><b><a href="#story" data-toggle="collapse" style="color: black">The Story</a></b></h3></div>
+<div class="story">
+    <a href="<%=user_path(@story.user.id)%>" data-toggle="popover" data-trigger="hover" title="">
+        <%= @story.beginning + ' ' %>
+    </a>
+
+  <% @story.posts.each do |p| %>
+    <% if p.success %>
+      <script>
+        $(document).ready(function(){
+            $('[data-toggle="popover<%=p.id%>"]').popover({
+                placement : 'top',
+                html : true,
+                content : '<center><%= image_tag p.user.url, size: "60x60", :style => "border-radius: 1em;" %></center><center><div class="truncate-username"><%=p.user.username%></div><div class="truncate-username">&nbsp|&nbsp<%= p.user.points%></div></center>'
+            });
+        });
+      </script>
+      <a href="<%=user_path(p.user.id)%>" data-toggle="popover<%=p.id%>" data-trigger="hover" title="">
+            <%= p.content + ' '%>
+        </a>
+    <% end %>
+  <% end %>
+</div>
+<br>
 <%= simple_form_for @post do |f| %>
   <%= f.input :content, input_html: { maxlength: 75, class: "message" } %>
   <span class="countdown"></span>
