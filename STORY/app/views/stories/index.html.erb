@@ -72,7 +72,7 @@
 					<div class='user'>
 						<%= image_tag s.user.photo.url, size: "50x50", :style => "border-radius: 1em;" %>
 						<div>
-							<%= s.user.username %>
+							<%= link_to s.user.username, s.user %>
 							|
 							<%= s.user.points %>
 						</div>
