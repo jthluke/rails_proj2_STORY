@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
-# Paperclip (for files attachment)
-gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+
 # Simple form
 gem 'simple_form'
 # CSS
@@ -50,5 +49,3 @@ group :development, :test do
 end
 
 gem 'devise'
-gem 'rails_12factor', group: :production
-ruby "2.2.0"

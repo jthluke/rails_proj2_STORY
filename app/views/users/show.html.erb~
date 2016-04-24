@@ -1,11 +1,8 @@
-<%= stylesheet_link_tag "story" %>
-
-<div class="body">
 <center><h1><%=@user.username%></h2>
 <% if (@user == current_user) %>
     <p> Email: <%= @user.email %></p>
 <% end %>
-<%= image_tag @user.photo.url, size: "150x150", :style => "border-radius: 1em;" %>
+<%= image_tag @user.photo.url, size: "150x150" %>
 <p> Member since <%= @user.created_at.strftime("%b %d, %Y")%></p>
 <p> <%= @user.points%> Points</p>
 </center>
@@ -14,15 +11,15 @@
 <% stories = @user.stories.sort_by {|story| story.score}.reverse! %>
 
 <% if (@user == current_user) %>
-    <h1> My Stories </h1>
-<% else %>
-    <h1><%=@user.username%>'s Stories</h1>
+    <h2> My Stories </h2>
+<% else %>    
+    <h2><%=@user.username%>'s Stories</h2>
 <% end %>
 
 <% if (stories.size > 0) %>
     <% stories.each do |s| %>
     <table>
-        <h3><%= link_to s.beginning + "...", s%></h3>
+        <h3>Story <%= s.id %> : <%= link_to s.beginning, s%></h2>
         <p>Likes: <%= s.score %></p>
     </table>
     <% end %>
@@ -35,9 +32,9 @@
 <% posts = @user.posts.sort_by {|post| post.score}.reverse! %>
 
 <% if (@user == current_user) %>
-    <h1> My Posts </h1>
-<% else %>
-    <h1><%=@user.username%>'s Posts</h1>
+    <h2> My Posts </h2>
+<% else %>    
+    <h2><%=@user.username%>'s Posts</h2>
 <% end %>
 
 <% if (posts.size > 0) %>
@@ -52,4 +49,3 @@
 <% else %>
     You have no posts yet!
 <% end %>
-</div>
