@@ -31,14 +31,20 @@
                     placement : 'right',
                     html : true,
                     container: 'body',
-                    style: "max-width: 100%",
+                    style: "background-color: green",
                     content : '<table style="word-wrap: break-word; max-width: 300px">'+
                                     '<tr><td><center><%= image_tag s.user.photo.url, size: "50x50",:style => "border-radius: 1em;" %><br><h4><%=s.user.username%> | <%= s.user.points%></h4></center></td>'+
-                                    '<td style="word-wrap: break-word; width: 300px"><p>Story beginning post 1 post 2 post 3...asdfasdfsadfasdfsaasdfasdfasdfasdfasdfasdfasdfaasdfsdfasdfasdfsadfsdfasdf</p></td></tr>'+
+                                    '<td style="word-wrap: break-word; max-width: 300px;"><p>Story beginning post 1 post 2 post 3...asdfasdfsadfasdfsaasdfasdfasdfasdfasdfasdfasdfaasdfsdfasdfasdfsadfsdfasdf</p></td></tr>'+
                                 '</table>'
                 });
             });
         </script>
+        <style>
+            .popover<%=s.id%>{
+                max-width: 150%;
+                background-color: green;
+            }
+        </style>
         <a href="<%= story_path(s.id) %>" data-toggle="popover<%=s.id%>" data-trigger="hover" title="">
             <h1 style="display: inline-block"><%= s.beginning %><%='...'%></h1>
         </a>

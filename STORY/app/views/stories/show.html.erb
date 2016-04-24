@@ -29,7 +29,7 @@ $(document).ready(function(){
 
 <a href="#story" data-toggle="collapse">The Story</a>
 <div class="story"><div id="story" class = "collapse">
-    <a href="#" data-toggle="popover" data-trigger="hover" title="">
+    <a href="<%=link_to user_path(@story.user.id)%>" data-toggle="popover" data-trigger="hover" title="">
         <%= @story.beginning + ' ' %>
     </a>
 
@@ -44,7 +44,7 @@ $(document).ready(function(){
 				    });
 				});
 			</script>
-			<a href="#" data-toggle="popover<%=p.id%>" data-trigger="hover" title="">
+			<a href="<%=link_to user_path(p.user.id)%>" data-toggle="popover<%=p.id%>" data-trigger="hover" title="">
         		<%= p.content + ' '%>
     		</a>
 		<% end %>
