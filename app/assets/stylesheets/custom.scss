@@ -1,0 +1,28 @@
+.top-bar-section li:not(.has-form) a:not(.button) {
+	font-size: 100%;
+}
+
+label {
+	font-size: 100%;
+}
+
+input[type="text"] {
+	font-size: 80%;
+}
+
+input[type="email"] {
+	font-size: 80%;
+}
+
+input[type="password"] {
+	font-size: 80%;
+}
+
+.truncate-username {
+  max-width: 55px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+  display: inline-block;
+  font-weight: bold;
+}

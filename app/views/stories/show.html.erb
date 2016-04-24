@@ -22,7 +22,7 @@ $(document).ready(function(){
     $('[data-toggle="popover"]').popover({
         placement : 'top',
         html : true,
-        content : '<center><%= image_tag @story.user.photo.url, size: "50x50", :style => "border-radius: 1em;" %></center><h4 class="media-heading"><%=@story.user.username%> | <%= @story.user.points%></h4>'
+        content : '<center><%= image_tag @story.user.photo.url, size: "60x60", :style => "border-radius: 1em;" %></center><center><div class="truncate-username"><%=@story.user.username%></div><div class="truncate-username">&nbsp|&nbsp<%= @story.user.points%></div></center>'
     });
 });
 </script>
@@ -48,7 +48,7 @@ $(document).ready(function(){
 				    $('[data-toggle="popover<%=p.id%>"]').popover({
 				        placement : 'top',
 				        html : true,
-				        content : '<center><%= image_tag p.user.photo.url, size: "50x50", :style => "border-radius: 1em;" %></center><h4 class="media-heading"><%=p.user.username%> | <%= p.user.points%></h4>'
+				        content : '<center><%= image_tag p.user.photo.url, size: "60x60", :style => "border-radius: 1em;" %></center><center><div class="truncate-username"><%=p.user.username%></div><div class="truncate-username">&nbsp|&nbsp<%= p.user.points%></div></center>'
 				    });
 				});
 			</script>
@@ -99,11 +99,10 @@ $(document).ready(function(){
 						<% end %>
 					</div>
 					<div class='user'>
-						<%= image_tag p.user.photo.url, size: "50x50", :style => "border-radius: 1em;" %>
+						<center><%= image_tag p.user.photo.url, size: "60x60", :style => "border-radius: 1em;" %></center>
 						<div>
-							<%= link_to p.user.username, p.user %>
-							|
-							<%= p.user.points %>
+							<center><div class='truncate-username'><%= link_to p.user.username, p.user%></div>
+							<div class="truncate-username">&nbsp|&nbsp<%= p.user.points %></div></center>
 						</div>
 					</div>
 					<div class='contentbody'>
@@ -118,7 +117,7 @@ $(document).ready(function(){
 </div></div>
 
 <br>
-<div class="contentbody"><b>What's next?</b></div>
+<div class="contentbody" style="padding-top: 10px"><b>What's next?</b></div>
 	<% posts_sorted_by_votes = @story.posts.where(:success => false).sort_by {|post| post.score}.reverse! %>
     <% if (posts_sorted_by_votes.size > 0) %>
 	    <% posts_sorted_by_votes.each do |p| %>
@@ -152,11 +151,10 @@ $(document).ready(function(){
 				<% end %>
 				</div>
 				<div class='user'>
-					<%= image_tag p.user.photo.url, size: "50x50", :style => "border-radius: 1em;" %>
+					<center><%= image_tag p.user.photo.url, size: "60x60", :style => "border-radius: 1em;" %></center>
 					<div>
-						<%= link_to p.user.username, p.user%>
-						|
-						<%= p.user.points %>
+						<center><div class='truncate-username'><%= link_to p.user.username, p.user%></div>
+						<div class="truncate-username">&nbsp|&nbsp<%= p.user.points %></div></center>
 					</div>
 				</div>
 				<div class='contentbody'>

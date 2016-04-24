@@ -8,7 +8,7 @@
 <%= stylesheet_link_tag "story" %>
 <div class="title">
 <br>
-<center><h1>Stories</h1></center>
+<center><h1 style="font-weight: bold; font-size: 40px; font-style: italic">Stories</h1></center>
 <br>
 </div>
 
@@ -30,11 +30,7 @@
                     placement : 'right',
                     html : true,
                     container: 'body',
-                    style: "background-color: green",
-                    content : '<table style="word-wrap: break-word; max-width: 300px">'+
-                                    '<tr><td><center><%= image_tag s.user.photo.url, size: "50x50",:style => "border-radius: 1em;" %><br><h4><%=link_to s.user.username, s.user %> | <%= s.user.points%></h4></center></td>'+
-                                    '<td style="word-wrap: break-word; max-width: 300px;"><p><%=s.beginning%> <%=s.posts[0].content if s.posts[0] && s.posts[0].success==true %> <%=s.posts[1].content if s.posts[1] && s.posts[1].success==true%> <%=s.posts[2].content if s.posts[2] && s.posts[2].success==true%></p></td></tr>'+
-                                '</table>'
+                    content : '<p style="word-wrap: break-word; max-width: 500px;"><%=s.beginning%> <%=s.posts[0].content if s.posts[0] && s.posts[0].success==true %> <%=s.posts[1].content if s.posts[1] && s.posts[1].success==true%> <%=s.posts[2].content if s.posts[2] && s.posts[2].success==true%> <%=s.posts[3].content if s.posts[3] && s.posts[3].success==true%></p>'
                 });
             });
         </script>
@@ -73,11 +69,10 @@
 					<% end %>
 					</div>
 					<div class='user'>
-						<%= image_tag s.user.photo.url, size: "50x50", :style => "border-radius: 1em;" %>
+						<center><%= image_tag s.user.photo.url, size: "60x60", :style => "border-radius: 1em;" %></center>
 						<div>
-							<%= link_to s.user.username, s.user %>
-							|
-							<%= s.user.points %>
+							<center><div class="truncate-username" ><%= link_to s.user.username, s.user %></div>
+							<div class="truncate-username" >&nbsp|&nbsp<%= s.user.points %></div></center>
 						</div>
 					</div>
 					<div class='contentbody'>
