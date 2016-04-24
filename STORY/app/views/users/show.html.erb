@@ -21,10 +21,10 @@
 
 <% if (stories.size > 0) %>
     <% stories.each do |s| %>
-    <table>
-        <h3><%= link_to s.beginning + "...", s%></h3>
-        <p>Likes: <%= s.score %></p>
-    </table>
+    <blockquote>
+        <%= link_to s.beginning + "...", s%>
+        <p><%= s.score %> Likes</p>
+    </blockquote>
     <% end %>
 <% else %>
     You have no stories yet.
@@ -42,12 +42,9 @@
 
 <% if (posts.size > 0) %>
     <% posts.each do |p| %>
-    <table>
-	    <tr>
-	    <td><b>Content</b>:  <%= p.content %> </td>
-	    <td><b>Likes</b>:  <%= p.score %> </td>
-	    <%= link_to "View Story", Story.find(p.story_id) %>
-    <table>
+    <blockquote><%= link_to p.content, Story.find(p.story_id) %>
+	    <p><%= p.score %> Likes</p>
+    </blockquote>
     <% end %>
 <% else %>
     You have no posts yet!
