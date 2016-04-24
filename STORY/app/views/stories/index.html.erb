@@ -33,7 +33,7 @@
                     style: "background-color: green",
                     content : '<table style="word-wrap: break-word; max-width: 300px">'+
                                     '<tr><td><center><%= image_tag s.user.photo.url, size: "50x50",:style => "border-radius: 1em;" %><br><h4><%=link_to s.user.username, s.user %> | <%= s.user.points%></h4></center></td>'+
-                                    '<td style="word-wrap: break-word; max-width: 300px;"><p><%=s.beginning%> <%=s.posts[0].content if s.posts[0] %> <%=s.posts[1].content if s.posts[1]%> <%=s.posts[2].content if s.posts[2]%></p></td></tr>'+
+                                    '<td style="word-wrap: break-word; max-width: 300px;"><p><%=s.beginning%> <%=s.posts[0].content if s.posts[0] && s.posts[0].success==true %> <%=s.posts[1].content if s.posts[1] && s.posts[1].success==true%> <%=s.posts[2].content if s.posts[2] && s.posts[2].success==true%></p></td></tr>'+
                                 '</table>'
                 });
             });
