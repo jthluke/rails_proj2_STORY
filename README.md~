@@ -14,7 +14,7 @@ Story
 has beginning, has score, and belongs to a User
 
 Post
-has content, has success, has score, belongs to a Story, and belongs to a User
+has content, has success, belongs to a Story, and belongs to a User
 
 
 Features:
