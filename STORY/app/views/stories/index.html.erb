@@ -44,16 +44,8 @@
                 background-color: green;
             }
         </style>
-        <a href="<%= story_path(s.id) %>" data-toggle="popover<%=s.id%>" data-trigger="hover" title="">
-            <h1 style="display: inline-block"><%= s.beginning %><%='...'%></h1>
-        </a>
-        <h3>Likes: <%= s.score %></h3>
-        <% if (current_user) %>
-            <% if (current_user.voted_up_on? s) %>
-                <%= link_to "Unlike", unlike_story_path(s), method: :put %>
-            <% else %>
-                <%= link_to "Like", like_story_path(s), method: :put %>
-            <% end %>
+
+
 				<div class="container">
 				<br>
 					<% if (current_user) %>
@@ -92,7 +84,6 @@
 					</div>
 				</div>
 
->>>>>>> 7913afba45f7a742c4113950505c8d24b77970fc
 
     <% end %>
 </div>
