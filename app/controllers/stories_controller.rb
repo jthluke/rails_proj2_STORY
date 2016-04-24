@@ -73,6 +73,14 @@ class StoriesController < ApplicationController
 	    	user.save
 		end
 		@story.disliked_by current_user
+
+		if @story.score <= -5
+			@story.posts do |p|
+				p.destroy
+			end
+			@story.destroy
+		end
+
 	    redirect_to stories_path
 	  end
 
@@ -89,6 +97,14 @@ class StoriesController < ApplicationController
 			current_user.points -= 1
 			current_user.save
 		end
+
+		if @story.score <= -5
+			@story.posts do |p|
+				p.destroy
+			end
+			@story.destroy
+		end
+		
 	    redirect_to stories_path
 	  end
 

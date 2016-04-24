@@ -83,11 +83,12 @@ end
     	user.save
 	end
     @post.disliked_by current_user
-		if @post.score == -3 && @post.success == false
-			story = Story.find(@post.story_id)
-			story.posts.delete(@post)
-			@post.destroy
-		end
+
+	if @post.score <= -3 && @post.success == false
+		story = Story.find(@post.story_id)
+		story.posts.delete(@post)
+		@post.destroy
+	end
     redirect_to story_url(id:@post.story_id)
   end
 
@@ -104,6 +105,12 @@ end
 		user.save
 		current_user.points -= 1
 		current_user.save
+	end
+
+	if @post.score <= -3 && @post.success == false
+		story = Story.find(@post.story_id)
+		story.posts.delete(@post)
+		@post.destroy
 	end
   end
 
