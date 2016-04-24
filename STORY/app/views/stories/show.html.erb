@@ -95,7 +95,7 @@ $(document).ready(function(){
 					<% end %>
 					</div>
 					<div class='user'>
-						<%= image_tag p.user.photo.url, size: "50x50" %>
+						<%= image_tag p.user.photo.url, size: "50x50", :style => "border-radius: 1em;" %>
 						<div>
 							<%= p.user.username %>
 							|
@@ -146,7 +146,7 @@ $(document).ready(function(){
 				<% end %>
 				</div>
 				<div class='user'>
-					<%= image_tag p.user.photo.url, size: "50x50" %>
+					<%= image_tag p.user.photo.url, size: "50x50", :style => "border-radius: 1em;" %>
 					<div>
 						<%= p.user.username %>
 						|
