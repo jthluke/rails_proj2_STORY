@@ -22,7 +22,11 @@ $(document).ready(function(){
     $('[data-toggle="popover"]').popover({
         placement : 'top',
         html : true,
+<<<<<<< HEAD
         content : '<center><%= image_tag @story.user.photo.url, size: "50x50", :style => "border-radius: 1em;" %></center><h4 class="media-heading"><%=link_to @story.user.username, @story.user%> | <%= @story.user.points%></h4>'
+=======
+        content : '<center><%= image_tag @story.user.photo.url, size: "50x50", :style => "border-radius: 1em;" %></center><h4 class="media-heading"><%=@story.user.username%> | <%= @story.user.points%></h4>'
+>>>>>>> 4a8e290843eadc2ca2cee410b0ebba5069589e66
     });
 });
 </script>
@@ -66,9 +70,9 @@ $(document).ready(function(){
 	<% posts_sorted_by_date = @story.posts.where(:success => true).sort_by {|post| post.updated_at} %>
 	<% if (posts_sorted_by_date.size > 0) %>
 		<% posts_sorted_by_date.each do |p| %>
+
 				<div class="container">
 				<br>
-
 					<% if (current_user) %>
 						<div class='votes'>
 						<% if (current_user.voted_up_on? p) %>

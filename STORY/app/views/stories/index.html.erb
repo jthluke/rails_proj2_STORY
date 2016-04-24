@@ -33,7 +33,7 @@
                     container: 'body',
                     style: "max-width: 100%",
                     content : '<table style="word-wrap: break-word; max-width: 300px">'+
-                                    '<tr><td><center><%= image_tag s.user.photo.url, size: "50x50" %><br><h4><%=s.user.username%> | <%= s.user.points%></h4></center></td>'+
+                                    '<tr><td><center><%= image_tag s.user.photo.url, size: "50x50",:style => "border-radius: 1em;" %><br><h4><%=s.user.username%> | <%= s.user.points%></h4></center></td>'+
                                     '<td style="word-wrap: break-word; width: 300px"><p>Story beginning post 1 post 2 post 3...asdfasdfsadfasdfsaasdfasdfasdfasdfasdfasdfasdfaasdfsdfasdfasdfsadfsdfasdf</p></td></tr>'+
                                 '</table>'
                 });
