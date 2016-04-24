@@ -20,6 +20,19 @@ $(document).ready(function(){
 });
 </script>
 
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+
+<script>
+	$(document).ready(function(){
+	    $(".collapse").collapse('show');
+	});
+</script>
+
 <a href="#story" data-toggle="collapse">The Story</a>
 <div class="story"><div id="story" class = "collapse">
     <a href="<%=user_path(@story.user.id)%>" data-toggle="popover" data-trigger="hover" title="">
@@ -42,16 +55,11 @@ $(document).ready(function(){
     		</a>
 		<% end %>
 	<% end %>
-</p>
 </div></div>
 
 <br>
 
-<script>
-$(document).ready(function(){
-    $(".collapse").collapse('show');
-});
-</script>
+
 
 <a href="#posts" data-toggle="collapse">Succeeded Posts</a>
 
