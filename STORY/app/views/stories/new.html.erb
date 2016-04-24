@@ -1,0 +1,24 @@
+<%= stylesheet_link_tag "story" %>
+<div class="body">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+<center><h1> Create New Story </h1></center>
+<%= simple_form_for @story do |f| %>
+  <%= f.input :beginning, input_html: { maxlength: 75, class: "message" } %>
+  <span class="countdown"></span>
+  <br>
+  <%= f.submit "Create Story", :class => "button small" %>
+<% end %>
+<script>
+function updateCountdown() {
+    var remaining = 75 - jQuery('.message').val().length;
+    jQuery('.countdown').text(remaining + ' characters remaining.');
+}
+
+jQuery(document).ready(function($) {
+    updateCountdown();
+    $('.message').change(updateCountdown);
+    $('.message').keyup(updateCountdown);
+});
+</script>
+</div>

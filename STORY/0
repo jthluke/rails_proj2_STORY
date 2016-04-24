@@ -1,0 +1,2 @@
+      invoke  active_record
+   identical    db/migrate/20160424030552_change_user_points_default_zero.rb

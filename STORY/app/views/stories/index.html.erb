@@ -1,0 +1,92 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+
+<%= stylesheet_link_tag "story" %>
+<div class="title">
+<br>
+<center><h1>Stories</h1></center>
+<br>
+</div>
+
+<div class="body">
+    <p>
+
+    <% if (current_user) %>
+    	<%= button_to "New Story", new_story_path, :class => "button medium", :method => :get,:style => "float: right"  %>
+    <% else %>
+    	<%= button_to "New Story", new_user_session_path, :class => "button medium", :method => :get, :style => "float: right" %>
+    <% end %>
+    </p>
+
+
+    <% @stories.sort_by {|story| story.score}.reverse!.each do |s| %>
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="popover<%=s.id%>"]').popover({
+                    placement : 'right',
+                    html : true,
+                    container: 'body',
+                    style: "background-color: green",
+                    content : '<table style="word-wrap: break-word; max-width: 300px">'+
+                                    '<tr><td><center><%= image_tag s.user.photo.url, size: "50x50",:style => "border-radius: 1em;" %><br><h4><%=link_to s.user.username, s.user %> | <%= s.user.points%></h4></center></td>'+
+                                    '<td style="word-wrap: break-word; max-width: 300px;"><p><%=s.beginning%> <%=s.posts[0].content if s.posts[0] && s.posts[0].success==true %> <%=s.posts[1].content if s.posts[1] && s.posts[1].success==true%> <%=s.posts[2].content if s.posts[2] && s.posts[2].success==true%></p></td></tr>'+
+                                '</table>'
+                });
+            });
+        </script>
+        <style>
+            .popover<%=s.id%>{
+                max-width: 150%;
+                background-color: green;
+            }
+        </style>
+
+
+				<div class="container">
+				<br>
+					<div class='votes'>
+					<% if (current_user) %>
+
+						<% if (current_user.voted_up_on? s) %>
+							<%= link_to image_tag("unupvote.png", size: "40x40", style: "padding-top: 3px; padding-left: 3px;"), unlike_story_path(s), :method => :put %>
+						<% else %>
+							<%= link_to image_tag("upvote.png", size: "40x40", style: "padding-top: 3px; padding-left: 3px;"), like_story_path(s), :method => :put %>
+
+						<% end %>
+						<div class='likes'><%= s.score %></div>
+						<% if (current_user.voted_down_on? s) %>
+							<%= link_to image_tag("undownvote.png", size: "40x40", style: "padding-top: 3px; padding-left: 3px;"), undislike_story_path(s), :method => :put %>
+
+						<% else %>
+							<%= link_to image_tag("downvote.png", size: "40x40", style: "padding-top: 3px; padding-left: 3px;"), dislike_story_path(s), :method => :put %>
+
+						<% end %>
+					<% else %>
+						<%= link_to image_tag("upvote.png", size: "40x40", style: "padding-top: 3px; padding-left: 3px;"), new_user_session_path, method: :get %>
+						<div class='likes'><%= s.score %></div>
+						<%= link_to image_tag("downvote.png", size: "40x40", style: "padding-top: 3px; padding-left: 3px;"), new_user_session_path, method: :get %>
+
+					<% end %>
+					</div>
+					<div class='user'>
+						<%= image_tag s.user.photo.url, size: "50x50", :style => "border-radius: 1em;" %>
+						<div>
+							<%= link_to s.user.username, s.user %>
+							|
+							<%= s.user.points %>
+						</div>
+					</div>
+					<div class='contentbody'>
+						<a href="<%= story_path(s.id) %>" data-toggle="popover<%=s.id%>" data-trigger="hover" title="">
+		            <blockquote style="display: inline-block"><%= s.beginning %><%='...'%></blockquote>
+		        </a>
+					</div>
+				</div>
+
+
+    <% end %>
+</div>
