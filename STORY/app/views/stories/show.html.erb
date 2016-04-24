@@ -15,14 +15,14 @@ $(document).ready(function(){
     $('[data-toggle="popover"]').popover({
         placement : 'top',
         html : true,
-        content : '<center><%= image_tag @story.user.photo.url, size: "50x50", :style => "border-radius: 1em;" %></center><h4 class="media-heading"><%=link_to @story.user.username, @story.user%> | <%= @story.user.points%></h4>'
+        content : '<center><%= image_tag @story.user.photo.url, size: "50x50", :style => "border-radius: 1em;" %></center><h4 class="media-heading"><%=@story.user.username%> | <%= @story.user.points%></h4>'
     });
 });
 </script>
 
 <a href="#story" data-toggle="collapse">The Story</a>
 <div class="story"><div id="story" class = "collapse">
-    <a href="<%=link_to user_path(@story.user.id)%>" data-toggle="popover" data-trigger="hover" title="">
+    <a href="<%=user_path(@story.user.id)%>" data-toggle="popover" data-trigger="hover" title="">
         <%= @story.beginning + ' ' %>
     </a>
 
@@ -33,11 +33,11 @@ $(document).ready(function(){
 				    $('[data-toggle="popover<%=p.id%>"]').popover({
 				        placement : 'top',
 				        html : true,
-				        content : '<center><%= image_tag p.user.photo.url, size: "50x50", :style => "border-radius: 1em;" %></center><h4 class="media-heading"><%=link_to p.user.username, p.user%> | <%= p.user.points%></h4>'
+				        content : '<center><%= image_tag p.user.photo.url, size: "50x50", :style => "border-radius: 1em;" %></center><h4 class="media-heading"><%=p.user.username%> | <%= p.user.points%></h4>'
 				    });
 				});
 			</script>
-			<a href="<%=link_to user_path(p.user.id)%>" data-toggle="popover<%=p.id%>" data-trigger="hover" title="">
+			<a href="<%=user_path(p.user.id)%>" data-toggle="popover<%=p.id%>" data-trigger="hover" title="">
         		<%= p.content + ' '%>
     		</a>
 		<% end %>
