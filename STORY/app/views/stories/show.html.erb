@@ -35,7 +35,7 @@ $(document).ready(function(){
 	});
 </script>
 
-<a href="#story" data-toggle="collapse">The Story</a>
+<div class="contentbody"><b><a href="#story" data-toggle="collapse" style="color: black">The Story</a></b></div>
 <div class="story"><div id="story" class = "collapse">
     <a href="<%=user_path(@story.user.id)%>" data-toggle="popover" data-trigger="hover" title="">
         <%= @story.beginning + ' ' %>
@@ -63,8 +63,7 @@ $(document).ready(function(){
 
 
 
-<a href="#posts" data-toggle="collapse">Succeeded Posts</a>
-
+<div class="contentbody"><b><a href="#posts" data-toggle="collapse" style="color: black">Succeeded Posts</a></b></div>
 <div class="posts"><div id="posts" class = "collapse">
 	<% posts_sorted_by_date = @story.posts.where(:success => true).sort_by {|post| post.updated_at} %>
 	<% if (posts_sorted_by_date.size > 0) %>
