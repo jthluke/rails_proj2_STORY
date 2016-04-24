@@ -6,16 +6,6 @@
 <br>
 </div>
 
-<div class="body">
-<p>
-
-<% if (current_user) %>
-	<%= button_to "New Story", new_story_path, :class => "button medium", :method => :get,:style => "float: right"  %>
-<% else %>
-	<%= button_to "New Story", new_user_session_path, :class => "button medium", :method => :get, :style => "float: right" %>
-<% end %>
-</p>
-
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -43,7 +33,7 @@
                     container: 'body',
                     style: "max-width: 100%",
                     content : '<table style="word-wrap: break-word; max-width: 300px">'+
-                                    '<tr><td><center><%= image_tag s.user.photo.url, size: "50x50" %><br><h4><%=s.user.username%> | <%= s.user.points%></h4></center></td>'+
+                                    '<tr><td><center><%= image_tag s.user.photo.url, size: "50x50",:style => "border-radius: 1em;" %><br><h4><%=s.user.username%> | <%= s.user.points%></h4></center></td>'+
                                     '<td style="word-wrap: break-word; width: 300px"><p>Story beginning post 1 post 2 post 3...asdfasdfsadfasdfsaasdfasdfasdfasdfasdfasdfasdfaasdfsdfasdfasdfsadfsdfasdf</p></td></tr>'+
                                 '</table>'
                 });
