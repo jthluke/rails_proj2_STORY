@@ -7,7 +7,7 @@
 
   <div class="field">
     <%= f.label "Enter a URL for a profile picture" %><br />
-    <%= f.text_field :url %>
+    <%= f.text_field :url, label: "Profile Picture URL" %>
     <%= f.label :username%><br />
     <%= f.text_field :username, autofocus: true %>
     <%= f.hidden_field :points, value: 0 %>

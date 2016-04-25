@@ -39,7 +39,7 @@ $(document).ready(function(){
 </div>
 <br>
 <%= simple_form_for @post do |f| %>
-  <%= f.input :content, input_html: { maxlength: 75, class: "message" } %>
+  <%= f.input :content, input_html: { maxlength: 100, class: "message" } %>
   <span class="countdown"></span>
   <%= f.hidden_field :story_id, value: @story.id %>
   <br>
@@ -47,7 +47,7 @@ $(document).ready(function(){
 <% end %>
 <script>
 function updateCountdown() {
-    var remaining = 75 - jQuery('.message').val().length;
+    var remaining = 100 - jQuery('.message').val().length;
     jQuery('.countdown').text(remaining + ' characters remaining.');
 }
 

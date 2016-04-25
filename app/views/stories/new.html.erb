@@ -4,14 +4,14 @@
 
 <center><h1> Create New Story </h1></center>
 <%= simple_form_for @story do |f| %>
-  <%= f.input :beginning, input_html: { maxlength: 75, class: "message" } %>
+  <%= f.input :beginning, input_html: { maxlength: 100, class: "message" } %>
   <span class="countdown"></span>
   <br>
   <%= f.submit "CREATE STORY", :class => "button_custom" %>
 <% end %>
 <script>
 function updateCountdown() {
-    var remaining = 75 - jQuery('.message').val().length;
+    var remaining = 100 - jQuery('.message').val().length;
     jQuery('.countdown').text(remaining + ' characters remaining.');
 }
 

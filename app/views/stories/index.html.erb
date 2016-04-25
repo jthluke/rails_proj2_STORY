@@ -28,7 +28,7 @@
                     placement : 'right',
                     html : true,
                     container: 'body',
-                    content : '<p style="word-wrap: break-word; max-width: 500px;"><%=s.beginning%> <%=s.posts[0].content if s.posts[0] && s.posts[0].success==true %> <%=s.posts[1].content if s.posts[1] && s.posts[1].success==true%> <%=s.posts[2].content if s.posts[2] && s.posts[2].success==true%> <%=s.posts[3].content if s.posts[3] && s.posts[3].success==true%></p>'
+                    content : '<p style="word-wrap: break-word; max-width: 500px;"><%=s.beginning%>&nbsp<% posts_sorted_by_date = s.posts.where(:success => true).sort_by {|post| post.updated_at} %><%(0..4).each do |i|%><%= posts_sorted_by_date[i].content if posts_sorted_by_date[i] %>&nbsp<% end %></p>'
                 });
             });
         </script>

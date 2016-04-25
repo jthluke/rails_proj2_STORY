@@ -41,7 +41,8 @@ $(document).ready(function(){
         <%= @story.beginning + ' ' %>
     </a>
 
-	<% @story.posts.each do |p| %>
+	<% posts_sorted_by_date = @story.posts.where(:success => true).sort_by {|post| post.updated_at} %>
+	<% posts_sorted_by_date.each do |p| %>
 		<% if p.success %>
 			<script>
 				$(document).ready(function(){
