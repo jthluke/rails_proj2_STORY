@@ -27,10 +27,13 @@
     </blockquote>
     <% end %>
 <% else %>
-    You have no stories yet.
-	<%= link_to "Create one now!", new_story_path, :method => :get %>
-<% end %>
+    <% if (@user == current_user) %>
+        You have no stories yet. <%= link_to "Create one now!", new_story_path, :method => :get %>
 
+    <% else %>
+        <%= @user.username %> has no stories yet!
+    <% end %>
+<% end %>
 
 <% posts = @user.posts.sort_by {|post| post.score}.reverse! %>
 
@@ -47,6 +50,10 @@
     </blockquote>
     <% end %>
 <% else %>
-    You have no posts yet!
+    <% if (@user == current_user) %>
+        You have no posts yet!
+    <% else %>
+        <%= @user.username %> has no posts yet!
+    <% end %>
 <% end %>
 </div>
