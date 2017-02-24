@@ -107,6 +107,9 @@ $(document).ready(function(){
 						</div>
 					</div>
 					<div class='contentbody'>
+            <div class='timestamp'>
+            <%= p.created_at.to_formatted_s(:db)  %>
+            </div>
 						<blockquote><%= p.content %></blockquote>
 					</div>
 				</div>
@@ -159,6 +162,9 @@ $(document).ready(function(){
 					</div>
 				</div>
 				<div class='contentbody'>
+          <div class='timestamp'>
+          <%= p.created_at.to_formatted_s(:db)  %>
+          </div>
 					<blockquote><%= p.content %></blockquote>
 				</div>
 			</div>

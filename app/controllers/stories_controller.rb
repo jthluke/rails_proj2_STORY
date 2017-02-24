@@ -1,7 +1,8 @@
 class StoriesController < ApplicationController
 
 	def index
-		@stories = Story.all
+		# @stories = Story.all
+		@stories = Story.paginate(:page => params[:page], :per_page => 2)
 	end
 
 	def new
@@ -28,7 +29,7 @@ class StoriesController < ApplicationController
 	  def upvote
 	    @story = Story.find(params[:id])
 	    user = User.find(@story.user_id)
-	    
+
 		  if (current_user.voted_down_on? @story)
 		  		if current_user.id == user.id
 		  			user.points += 3
@@ -104,7 +105,7 @@ class StoriesController < ApplicationController
 			end
 			@story.destroy
 		end
-		
+
 	    redirect_to stories_path
 	  end
 
